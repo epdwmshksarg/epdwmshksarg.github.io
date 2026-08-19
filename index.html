@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Default Collector Form</title>
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Smooth CSS transition for swapping values */
+    .fade-swap {
+      transition: opacity 0.2s ease-in-out;
+    }
+    .fade-swap-out {
+      opacity: 0.1;
+    }
+    /* Dimmed effect for disabled sections */
+    .section-disabled {
+      opacity: 0.65;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-light text-dark py-5">
+
+  <div class="container" style="max-width: 900px;">
+    
+    <!-- Header -->
+    <header class="mb-4 pb-2 border-bottom">
+      <h1 class="h2 fw-bold text-primary">Default Collector</h1>
+    </header>
+
+    <form id="collectorForm" novalidate>
+
+      <!-- SECTION 1 -->
+      <section class="card shadow-sm mb-4">
+        <div class="card-header bg-white fw-semibold">
+          Arrangement & Selection
+        </div>
+        <div class="card-body">
+          <!-- Radio Options -->
+          <div class="mb-3">
+            <label class="form-label fw-medium">Arranged By</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="arrangedBy" id="arrangedBySeller" value="seller" checked>
+              <label class="form-check-label" for="arrangedBySeller">
+                I/we (as the seller) will provide the removal service
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="arrangedBy" id="arrangedByOther" value="other">
+              <label class="form-check-label" for="arrangedByOther">
+                Other Company
+              </label>
+            </div>
+          </div>
+
+          <!-- Dropdown -->
+          <div class="mb-3">
+            <label for="registeredCollectors" class="form-label fw-medium">Registered Collectors</label>
+            <select class="form-select" id="registeredCollectors" disabled>
+              <option value="" selected disabled>Select a collector...</option>
+              <option value="Collector 1">Collector 1</option>
+              <option value="Collector 2">Collector 2</option>
+              <option value="Collector 3">Collector 3</option>
+              <option value="manual">Not in listed. Input Manually</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2 (Initially Hidden) -->
+      <section id="section2" class="card shadow-sm mb-4 fade-swap d-none">
+        <div class="card-header bg-white fw-semibold d-flex justify-content-between align-items-center">
+          <span>Collector Information</span>
+          <span id="badgeSection2" class="badge bg-secondary d-none">Auto-filled (Read Only)</span>
+        </div>
+        <div class="card-body">
+          
+          <!-- Collector Info -->
+          <h5 class="h6 text-secondary mb-3">Collector Info</h5>
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <label for="brn" class="form-label">BRN</label>
+              <input type="text" class="form-control" id="brn" value="">
+            </div>
+            <div class="col-md-4">
+              <label for="companyEng" class="form-label">Company Name ENG</label>
+              <input type="text" class="form-control" id="companyEng" value="">
+            </div>
+            <div class="col-md-4">
+              <label for="companyChi" class="form-label">Company Name CHI</label>
+              <input type="text" class="form-control" id="companyChi" value="">
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <!-- Contact Person -->
+          <h5 class="h6 text-secondary mb-3">Contact Person</h5>
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <label for="contactEng" class="form-label">Name in ENG</label>
+              <input type="text" class="form-control" id="contactEng" value="">
+            </div>
+            <div class="col-md-4">
+              <label for="contactChi" class="form-label">Name in CHI</label>
+              <input type="text" class="form-control" id="contactChi" value="">
+            </div>
+            <div class="col-md-4">
+              <label for="position" class="form-label">Position</label>
+              <input type="text" class="form-control" id="position" value="">
+            </div>
+            <div class="col-md-3">
+              <label for="countryCode" class="form-label">Country Code</label>
+              <input type="number" class="form-control" id="countryCode" value="">
+            </div>
+            <div class="col-md-9">
+              <label for="tel" class="form-label">Tel</label>
+              <input type="number" class="form-control" id="tel" value="">
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <!-- Corresponding Address -->
+          <h5 class="h6 text-secondary mb-3">Corresponding Address</h5>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="addrArea" class="form-label">Area</label>
+              <input type="text" class="form-control" id="addrArea" value="">
+            </div>
+            <div class="col-md-6">
+              <label for="addrDistrict" class="form-label">District</label>
+              <input type="text" class="form-control" id="addrDistrict" value="">
+            </div>
+            <div class="col-12">
+              <label for="addrStreet" class="form-label">Estate / Street</label>
+              <input type="text" class="form-control" id="addrStreet" value="">
+            </div>
+            <div class="col-md-6">
+              <label for="addrBuilding" class="form-label">Building</label>
+              <input type="text" class="form-control" id="addrBuilding" value="">
+            </div>
+            <div class="col-md-2">
+              <label for="addrBlock" class="form-label">Block</label>
+              <input type="text" class="form-control" id="addrBlock" value="">
+            </div>
+            <div class="col-md-2">
+              <label for="addrFloor" class="form-label">Floor</label>
+              <input type="text" class="form-control" id="addrFloor" value="">
+            </div>
+            <div class="col-md-2">
+              <label for="addrRoom" class="form-label">Room / Unit</label>
+              <input type="text" class="form-control" id="addrRoom" value="">
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 3 -->
+      <section class="card shadow-sm mb-4 border-warning">
+        <div class="card-header bg-warning-subtle text-warning-emphasis fw-semibold">
+          Removal Service Coverage Area in Respect of the Classes of REE
+        </div>
+        <div class="card-body">
+          <div class="alert alert-warning d-flex align-items-top mb-0" role="alert">
+            <svg class="bi flex-shrink-0 me-2 mt-1" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-label="Warning:">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+            <div>
+              In accordance with the requirements under Section 31(2) of the Product Eco-responsibility (Regulated Electrical Equipment) Regulation, to provide removal service in respect of every particular class of REE distributed by the Seller on any premises in Hong Kong.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4 -->
+      <section id="section4" class="card shadow-sm mb-4">
+        <div class="card-header bg-white fw-semibold d-flex justify-content-between align-items-center">
+          <span>The Transfer Arrangement of the Collector is as Follows</span>
+          <span id="badgeSection4" class="badge bg-secondary d-none">Disabled for Registered Collector</span>
+        </div>
+        <div class="card-body">
+          <!-- Radio Options -->
+          <div class="mb-4">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="transferArrangement" id="transferSameDay" value="sameday" checked>
+              <label class="form-check-label" for="transferSameDay">
+                Collected waste equipment will generally be transferred to the Recycler on the same day
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="transferArrangement" id="transferStorage" value="storage">
+              <label class="form-check-label" for="transferStorage">
+                Collected waste equipment will generally be temporary stored for no more than 5 working days
+              </label>
+            </div>
+          </div>
+
+          <!-- Temporary Storage Details -->
+          <div id="storageDetails" class="p-3 border rounded bg-body-tertiary d-none">
+            <h6 class="fw-semibold mb-3">Temporary Storage Location & Details</h6>
+            
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label for="tempArea" class="form-label">Area</label>
+                <input type="text" class="form-control" id="tempArea" value="HK">
+              </div>
+              <div class="col-md-6">
+                <label for="tempDistrict" class="form-label">District</label>
+                <input type="text" class="form-control" id="tempDistrict" value="WAN CHAI">
+              </div>
+              <div class="col-12">
+                <label for="tempStreet" class="form-label">Estate / Street</label>
+                <input type="text" class="form-control" id="tempStreet" value="123 ABC Street">
+              </div>
+              <div class="col-md-6">
+                <label for="tempBuilding" class="form-label">Building</label>
+                <input type="text" class="form-control" id="tempBuilding" value="ABC Tower">
+              </div>
+              <div class="col-md-2">
+                <label for="tempBlock" class="form-label">Block</label>
+                <input type="text" class="form-control" id="tempBlock" value="1">
+              </div>
+              <div class="col-md-2">
+                <label for="tempFloor" class="form-label">Floor</label>
+                <input type="text" class="form-control" id="tempFloor" value="2">
+              </div>
+              <div class="col-md-2">
+                <label for="tempRoom" class="form-label">Room / Unit</label>
+                <input type="text" class="form-control" id="tempRoom" value="3">
+              </div>
+            </div>
+
+            <!-- Checkboxes -->
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="checkMultiStorey">
+              <label class="form-check-label" for="checkMultiStorey">
+                Premises for temporary storage are inside a multi-storey building
+              </label>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="checkVolume">
+              <label class="form-check-label" for="checkVolume">
+                Total volume of e-waste in temporary storage is more than 50 m<sup>3</sup>
+              </label>
+            </div>
+
+            <!-- Reference/ID Input -->
+            <div class="col-md-6">
+              <label for="tempRefId" class="form-label">Reference ID / Storage Code</label>
+              <input type="text" class="form-control" id="tempRefId" value="12345678">
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Submit Action -->
+      <div class="text-end">
+        <button type="submit" class="btn btn-primary px-4">Submit</button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- JavaScript for Dynamic Interactions & Disabling -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      
+      // Data dictionary for predefined collectors
+      const collectorData = {
+        'Collector 1': {
+          brn: '11111111', companyEng: 'Collector 1', companyChi: '收集者1',
+          contactEng: 'Peter CHAN 1', contactChi: '陳大文1', position: 'Staff1',
+          countryCode: '852', tel: '12345678',
+          addrArea: 'HK', addrDistrict: 'WAN CHAI', addrStreet: '123 ABC Street C1', 
+          addrBuilding: 'ABC Tower C1', addrBlock: 'C1', addrFloor: 'C1', addrRoom: 'C1'
+        },
+        'Collector 2': {
+          brn: '22222222', companyEng: 'Collector 2', companyChi: '收集者2',
+          contactEng: 'Peter CHAN 2', contactChi: '陳大文2', position: 'Staff2',
+          countryCode: '852', tel: '12345678',
+          addrArea: 'HK', addrDistrict: 'WAN CHAI', addrStreet: '123 ABC Street C2', 
+          addrBuilding: 'ABC Tower C2', addrBlock: 'C2', addrFloor: 'C2', addrRoom: 'C2'
+        },
+        'Collector 3': {
+          brn: '33333333', companyEng: 'Collector 3', companyChi: '收集者3',
+          contactEng: 'Peter CHAN 3', contactChi: '陳大文3', position: 'Staff3',
+          countryCode: '852', tel: '12345678',
+          addrArea: 'HK', addrDistrict: 'WAN CHAI', addrStreet: '123 ABC Street C3', 
+          addrBuilding: 'ABC Tower C3', addrBlock: 'C3', addrFloor: 'C3', addrRoom: 'C3'
+        }
+      };
+
+      // Elements
+      const radioArrangedBy = document.getElementsByName('arrangedBy');
+      const dropdownCollectors = document.getElementById('registeredCollectors');
+      const section2 = document.getElementById('section2');
+      const section4 = document.getElementById('section4');
+      const badgeSection2 = document.getElementById('badgeSection2');
+      const badgeSection4 = document.getElementById('badgeSection4');
+
+      const inputsS2 = {
+        brn: document.getElementById('brn'),
+        companyEng: document.getElementById('companyEng'),
+        companyChi: document.getElementById('companyChi'),
+        contactEng: document.getElementById('contactEng'),
+        contactChi: document.getElementById('contactChi'),
+        position: document.getElementById('position'),
+        countryCode: document.getElementById('countryCode'),
+        tel: document.getElementById('tel'),
+        addrArea: document.getElementById('addrArea'),
+        addrDistrict: document.getElementById('addrDistrict'),
+        addrStreet: document.getElementById('addrStreet'),
+        addrBuilding: document.getElementById('addrBuilding'),
+        addrBlock: document.getElementById('addrBlock'),
+        addrFloor: document.getElementById('addrFloor'),
+        addrRoom: document.getElementById('addrRoom')
+      };
+
+      // Helper function to populate values in Section 2
+      function populateSection2(data) {
+        Object.keys(inputsS2).forEach(key => {
+          inputsS2[key].value = data ? (data[key] || '') : '';
+        });
+      }
+
+      // Helper function to enable or disable all form elements within a container element
+      function toggleSectionInputs(sectionElement, disable) {
+        const elements = sectionElement.querySelectorAll('input, select, textarea, button');
+        elements.forEach(el => {
+          el.disabled = disable;
+        });
+        
+        if (disable) {
+          sectionElement.classList.add('section-disabled');
+        } else {
+          sectionElement.classList.remove('section-disabled');
+        }
+      }
+
+      // Handle swapping transition, data updates, and disable toggling
+      function updateSectionState(selectedCollector) {
+        const isPredefinedCollector = Boolean(collectorData[selectedCollector]);
+
+        // Trigger CSS fade-out transition for Section 2
+        section2.classList.add('fade-swap-out');
+
+        setTimeout(() => {
+          if (isPredefinedCollector) {
+            // Populate data & Disable Sections 2 and 4
+            populateSection2(collectorData[selectedCollector]);
+            toggleSectionInputs(section2, true);
+            toggleSectionInputs(section4, true);
+
+            badgeSection2.classList.remove('d-none');
+            badgeSection4.classList.remove('d-none');
+          } else {
+            // Clear inputs & Enable Sections 2 and 4
+            populateSection2(null);
+            toggleSectionInputs(section2, false);
+            toggleSectionInputs(section4, false);
+
+            badgeSection2.classList.add('d-none');
+            badgeSection4.classList.add('d-none');
+          }
+          
+          // Fade Section 2 back in
+          section2.classList.remove('fade-swap-out');
+        }, 150);
+      }
+
+      // Dropdown listener
+      dropdownCollectors.addEventListener('change', function () {
+        updateSectionState(this.value);
+      });
+
+      // Section 1 Radio listener
+      function handleArrangedByChange() {
+        const selectedValue = Array.from(radioArrangedBy).find(r => r.checked)?.value;
+        
+        if (selectedValue === 'other') {
+          dropdownCollectors.disabled = false;
+          section2.classList.remove('d-none');
+        } else {
+          dropdownCollectors.disabled = true;
+          dropdownCollectors.value = '';
+          populateSection2(null);
+          
+          // Ensure Section 2 and 4 are enabled/reset when switching back to Seller
+          toggleSectionInputs(section2, false);
+          toggleSectionInputs(section4, false);
+          badgeSection2.classList.add('d-none');
+          badgeSection4.classList.add('d-none');
+
+          section2.classList.add('d-none');
+        }
+      }
+
+      radioArrangedBy.forEach(radio => {
+        radio.addEventListener('change', handleArrangedByChange);
+      });
+
+      // Section 4 Radio listener
+      const radioTransfer = document.getElementsByName('transferArrangement');
+      const storageDetails = document.getElementById('storageDetails');
+
+      function handleTransferChange() {
+        const selectedValue = Array.from(radioTransfer).find(r => r.checked)?.value;
+        if (selectedValue === 'storage') {
+          storageDetails.classList.remove('d-none');
+        } else {
+          storageDetails.classList.add('d-none');
+        }
+      }
+
+      radioTransfer.forEach(radio => {
+        radio.addEventListener('change', handleTransferChange);
+      });
+
+    });
+  </script>
+
+</body>
+</html>
