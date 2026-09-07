@@ -10,7 +10,17 @@ function makeReference() {
   return `EV-${new Date().getFullYear()}-${suffix}`;
 }
 
-form.addEventListener("submit", (event) => {
+async function compressRegistration(registration) {
+  const json = JSON.stringify(registration);
+  if (!("CompressionStream" in window)) return json;
+  const stream = new Blob([json]).stream().pipeThrough(new CompressionStream("deflate-raw"));
+  const bytes = new Uint8Array(await new Response(stream).arrayBuffer());
+  let binary = "";
+  bytes.forEach((byte) => { binary += String.fromCharCode(byte); });
+  return `EVORA1:${btoa(binary)}`;
+}
+
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!form.reportValidity()) return;
 
@@ -19,7 +29,7 @@ form.addEventListener("submit", (event) => {
   const reference = makeReference();
   registration.reference = reference;
   registration.updates = data.get("updates") === "on";
-  const verificationPayload = JSON.stringify({ type: "EVora EV registration", registration });
+  const verificationPayload = await compressRegistration({ type: "EVora EV registration", registration });
 
   document.querySelector("#reference-id").textContent = reference;
   document.querySelector("#vehicle-name").textContent = registration.vehicle;
@@ -37,7 +47,7 @@ form.addEventListener("submit", (event) => {
       height: 112,
       colorDark: "#18352e",
       colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.M,
+      correctLevel: QRCode.CorrectLevel.L,
     });
   }
 

@@ -27,6 +27,16 @@ function showError(message) {
   status.className = "reader-status error";
 }
 
+async function decodePayload(rawData) {
+  if (!rawData.startsWith("EVORA1:")) return JSON.parse(rawData);
+  if (!("DecompressionStream" in window)) throw new Error("Compressed QR reading is not supported in this browser.");
+  const binary = atob(rawData.slice(7));
+  const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
+  const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+  const json = await new Response(stream).text();
+  return JSON.parse(json);
+}
+
 function decodeImage(file) {
   const image = new Image();
   image.onload = () => {
@@ -41,7 +51,7 @@ function decodeImage(file) {
       return;
     }
     try {
-      const payload = JSON.parse(code.data);
+      const payload = await decodePayload(code.data);
       if (!payload.registration) throw new Error("Invalid registration");
       renderResult(payload.registration);
     } catch {
