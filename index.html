@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="EVora electric vehicle registration demo" />
+    <title>EVora | EV Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#" aria-label="EVora home">
+          <img src="logo.png" alt="EVora" class="brand-logo" />
+        </a>
+        <span class="header-note">Electric mobility, made simple</span>
+        <a class="reader-link" href="read.html">Read a QR code <span>↗</span></a>
+      </header>
+
+      <main class="main-content">
+        <section class="intro" aria-labelledby="page-title">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> New vehicle registration</div>
+          <h1 id="page-title">Your next move<br /><em>starts here.</em></h1>
+          <p class="intro-copy">
+            Register your new electric vehicle in a few simple steps. We’ll create a secure digital
+            pass for your first drive.
+          </p>
+          <div class="intro-details">
+            <div class="detail-item">
+              <strong>01</strong>
+              <span>Complete your details</span>
+            </div>
+            <div class="detail-item">
+              <strong>02</strong>
+              <span>Receive your digital pass</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-card" aria-labelledby="form-title">
+          <div class="card-topline">
+            <span>EVora registration</span>
+            <span class="secure-label"><span class="lock-icon">⌑</span> Secure form</span>
+          </div>
+          <div id="registration-view">
+            <div class="form-heading">
+              <div>
+                <h2 id="form-title">Tell us about you</h2>
+                <p>All fields are required unless marked optional.</p>
+              </div>
+              <span class="step-count">1 <i>/</i> 1</span>
+            </div>
+
+            <form id="registration-form">
+              <div class="field-grid">
+                <label class="field">
+                  <span>First name</span>
+                  <input name="firstName" type="text" autocomplete="given-name" placeholder="e.g. Alex" required />
+                </label>
+                <label class="field">
+                  <span>Last name</span>
+                  <input name="lastName" type="text" autocomplete="family-name" placeholder="e.g. Morgan" required />
+                </label>
+              </div>
+
+              <label class="field">
+                <span>Email address</span>
+                <input name="email" type="email" autocomplete="email" placeholder="alex@example.com" required />
+              </label>
+
+              <div class="field-grid">
+                <label class="field">
+                  <span>Vehicle model</span>
+                  <select name="vehicle" required>
+                    <option value="" disabled selected>Select a model</option>
+                    <option>EVora One</option>
+                    <option>EVora One Plus</option>
+                    <option>EVora S</option>
+                  </select>
+                </label>
+                <label class="field">
+                  <span>Delivery date</span>
+                  <input name="deliveryDate" type="date" required />
+                </label>
+              </div>
+
+              <div class="section-label"><span>01</span> EV battery details</div>
+              <div class="field-grid">
+                <label class="field">
+                  <span>Battery brand</span>
+                  <input name="batteryBrand" type="text" placeholder="e.g. EVora Energy" required />
+                </label>
+                <label class="field">
+                  <span>Battery serial number</span>
+                  <input name="batterySerial" type="text" placeholder="e.g. EVE-24001" required />
+                </label>
+              </div>
+              <div class="field-grid">
+                <label class="field">
+                  <span>Battery power</span>
+                  <input name="batteryPower" type="text" placeholder="e.g. 150 kW" required />
+                </label>
+                <label class="field">
+                  <span>Battery specification</span>
+                  <input name="batterySpec" type="text" placeholder="e.g. 82 kWh · Li-ion" required />
+                </label>
+              </div>
+
+              <div class="section-label"><span>02</span> Ownership details</div>
+              <div class="field-grid">
+                <label class="field">
+                  <span>Owner name</span>
+                  <input name="ownerName" type="text" placeholder="Full legal name" required />
+                </label>
+                <label class="field">
+                  <span>Owner ID</span>
+                  <input name="ownerId" type="text" placeholder="Identification number" required />
+                </label>
+              </div>
+              <div class="address-grid">
+                <label class="field">
+                  <span>Address line 1</span>
+                  <input name="addressLine1" type="text" placeholder="Street and building" required />
+                </label>
+                <label class="field">
+                  <span>Address line 2</span>
+                  <input name="addressLine2" type="text" placeholder="City, state / postal code" required />
+                </label>
+              </div>
+              <label class="field">
+                <span>EV battery registration date</span>
+                <input name="batteryRegistrationDate" type="date" required />
+              </label>
+
+              <label class="checkbox-row">
+                <input name="updates" type="checkbox" />
+                <span class="custom-checkbox" aria-hidden="true">✓</span>
+                <span>I’d like to receive helpful EV tips and product updates <small>(optional)</small></span>
+              </label>
+
+              <button class="submit-button" type="submit">
+                <span>Complete registration</span>
+                <span class="button-arrow" aria-hidden="true">↗</span>
+              </button>
+              <p class="privacy-note"><span aria-hidden="true">●</span> Your information is encrypted and never shared.</p>
+            </form>
+          </div>
+
+          <div id="success-view" class="success-view" hidden>
+            <div class="success-icon" aria-hidden="true">✓</div>
+            <p class="success-eyebrow">Registration complete</p>
+            <h2>You’re ready to roll<span>.</span></h2>
+            <p class="success-copy">
+              Your vehicle registration is confirmed. Save this verification pass for your delivery day.
+            </p>
+            <div class="pass-layout">
+              <div class="qr-frame">
+                <div id="qrcode" aria-label="Verification QR code"></div>
+              </div>
+              <div class="pass-details">
+                <p class="pass-label">Verification reference</p>
+                <strong id="reference-id"></strong>
+                <p class="pass-label">Registered vehicle</p>
+                <strong id="vehicle-name"></strong>
+                <p class="pass-label">Owner</p>
+                <strong id="owner-name"></strong>
+                <p class="pass-label">Battery serial</p>
+                <strong id="battery-serial"></strong>
+              </div>
+            </div>
+            <div class="success-actions">
+              <button id="save-qr-button" class="submit-button compact-button" type="button"><span>Save QR code</span><span class="button-arrow">↓</span></button>
+              <button id="reset-button" class="text-button" type="button">Register another vehicle <span>↗</span></button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <span>© 2025 EVora Mobility</span>
+        <span>Built for a cleaner tomorrow <b>●</b></span>
+      </footer>
+    </div>
+  </body>
+</html>
