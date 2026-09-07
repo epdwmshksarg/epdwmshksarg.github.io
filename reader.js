@@ -40,12 +40,17 @@ async function decodePayload(rawData) {
 function decodeImage(file) {
   const image = new Image();
   image.onload = async () => {
-    canvas.width = image.naturalWidth;
-    canvas.height = image.naturalHeight;
     const context = canvas.getContext("2d", { willReadFrequently: true });
-    context.drawImage(image, 0, 0);
+    const sourceSize = Math.max(image.naturalWidth, image.naturalHeight);
+    const scale = sourceSize < 700 ? 700 / sourceSize : 1;
+    canvas.width = Math.round(image.naturalWidth * scale);
+    canvas.height = Math.round(image.naturalHeight * scale);
+    context.imageSmoothingEnabled = false;
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    const code = typeof jsQR === "function" ? jsQR(imageData.data, imageData.width, imageData.height) : null;
+    const code = typeof jsQR === "function"
+      ? jsQR(imageData.data, imageData.width, imageData.height, { inversionAttempts: "attemptBoth" })
+      : null;
     if (!code) {
       showError("We couldn’t find a QR code in that image. Please try the saved verification PNG.");
       return;
