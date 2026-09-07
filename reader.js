@@ -39,7 +39,7 @@ async function decodePayload(rawData) {
 
 function decodeImage(file) {
   const image = new Image();
-  image.onload = () => {
+  image.onload = async () => {
     canvas.width = image.naturalWidth;
     canvas.height = image.naturalHeight;
     const context = canvas.getContext("2d", { willReadFrequently: true });
