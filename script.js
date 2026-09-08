@@ -43,8 +43,8 @@ form.addEventListener("submit", async (event) => {
   } else {
     new QRCode(qrCode, {
       text: verificationPayload,
-      width: 256,
-      height: 256,
+      width: 480,
+      height: 480,
       colorDark: "#18352e",
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.L,

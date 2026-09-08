@@ -85,8 +85,8 @@ select:valid { color: var(--ink); }
 .success-view h2 span { color: var(--green); }
 .success-copy { max-width: 310px; margin: 11px auto 25px; line-height: 1.55; }
 .pass-layout { display: flex; align-items: center; gap: 21px; padding: 18px; text-align: left; background: #f7faf7; border: 1px solid var(--line); border-radius: 4px; }
-.qr-frame { display: grid; flex: 0 0 130px; width: 130px; height: 130px; place-items: center; background: white; }
-#qrcode img, #qrcode canvas { width: 112px !important; height: 112px !important; }
+.qr-frame { display: grid; flex: 0 0 160px; width: 160px; height: 160px; place-items: center; background: white; }
+#qrcode img, #qrcode canvas { width: 144px !important; height: 144px !important; image-rendering: pixelated; }
 .pass-details { display: grid; gap: 4px; }
 .pass-label { margin: 3px 0 0; color: #9aa69f; font-size: .54rem; }
 .pass-details strong { color: var(--ink); font-size: .78rem; }
