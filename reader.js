@@ -28,7 +28,7 @@ function showError(message) {
 }
 
 async function decodePayload(rawData) {
-  if (!rawData.startsWith("EVORA1:")) return JSON.parse(rawData);
+  if (!rawData.startsWith("EV1:")) return JSON.parse(rawData);
   if (!("DecompressionStream" in window)) throw new Error("Compressed QR reading is not supported in this browser.");
   const binary = atob(rawData.slice(7));
   const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
@@ -60,7 +60,7 @@ function decodeImage(file) {
       if (!payload.registration) throw new Error("Invalid registration");
       renderResult(payload.registration);
     } catch {
-      showError("This QR code is not an EVora registration pass.");
+      showError("This QR code is not an EV registration pass.");
     }
   };
   image.onerror = () => showError("That image could not be opened.");

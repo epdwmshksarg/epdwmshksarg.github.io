@@ -17,7 +17,7 @@ async function compressRegistration(registration) {
   const bytes = new Uint8Array(await new Response(stream).arrayBuffer());
   let binary = "";
   bytes.forEach((byte) => { binary += String.fromCharCode(byte); });
-  return `EVORA1:${btoa(binary)}`;
+  return `EV1:${btoa(binary)}`;
 }
 
 form.addEventListener("submit", async (event) => {
@@ -29,7 +29,7 @@ form.addEventListener("submit", async (event) => {
   const reference = makeReference();
   registration.reference = reference;
   registration.updates = data.get("updates") === "on";
-  const verificationPayload = await compressRegistration({ type: "EVora EV registration", registration });
+  const verificationPayload = await compressRegistration({ type: "EV EV registration", registration });
 
   document.querySelector("#reference-id").textContent = reference;
   document.querySelector("#vehicle-name").textContent = registration.vehicle;
