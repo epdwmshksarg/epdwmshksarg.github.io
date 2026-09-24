@@ -514,7 +514,7 @@
                             <div class="col-md-4">
                                 <div class="p-3 border rounded bg-white">
                                     <div class="form-check mb-2">
-                                        <input class="form-check-input" type="checkbox" id="role_supplier_chk" onchange="toggleRoleBlock('supplier_reg_block', this.checked)">
+                                        <input class="form-check-input" type="checkbox" id="role_supplier_chk" onchange="toggleRoleBlock('#supplier_reg_block, #supplierAssessmentDiv', this.checked)">
                                         <label class="form-check-label fw-bold text-primary" for="role_supplier_chk">Supplier</label>
                                     </div>
                                     <div id="supplier_reg_block" class="ms-3 d-none">
@@ -538,7 +538,7 @@
                             <div class="col-md-4">
                                 <div class="p-3 border rounded bg-white">
                                     <div class="form-check mb-2">
-                                        <input class="form-check-input" type="checkbox" id="role_seller_chk" onchange="toggleRoleBlock('seller_reg_block', this.checked)">
+                                        <input class="form-check-input" type="checkbox" id="role_seller_chk" onchange="toggleRoleBlock('#seller_reg_block, #sellerAssessmentDiv', this.checked)">
                                         <label class="form-check-label fw-bold text-primary" for="role_seller_chk">Seller</label>
                                     </div>
                                     <div id="seller_reg_block" class="ms-3 d-none">
@@ -562,7 +562,7 @@
                             <div class="col-md-4">
                                 <div class="p-3 border rounded bg-white">
                                     <div class="form-check mb-2">
-                                        <input class="form-check-input" type="checkbox" id="role_collector_chk" onchange="toggleRoleBlock('collector_reg_block', this.checked)">
+                                        <input class="form-check-input" type="checkbox" id="role_collector_chk" onchange="toggleRoleBlock('#collector_reg_block, #collectorAssessmentDiv', this.checked)">
                                         <label class="form-check-label fw-bold text-primary" for="role_collector_chk">Collector</label>
                                     </div>
                                     <div id="collector_reg_block" class="ms-3 d-none">
@@ -586,7 +586,7 @@
                     </div>
 
                     <!-- Supplier Assessment Full Form -->
-                    <div class="sub-section">
+                    <div class="sub-section d-none" id="supplierAssessmentDiv">
                         <div class="sub-section-title"><i class="fa-solid fa-truck-field me-2"></i>Supplier Assessment</div>
                         
                         <!-- REE Types -->
@@ -707,7 +707,7 @@
                     </div>
 
                     <!-- Seller Assessment Full Form -->
-                    <div class="sub-section">
+                    <div class="sub-section d-none" id="sellerAssessmentDiv">
                         <div class="sub-section-title"><i class="fa-solid fa-store me-2"></i>Seller Assessment</div>
 
                         <!-- Part A -->
@@ -958,7 +958,7 @@
                     </div>
 
                     <!-- Collector Assessment Full Form -->
-                    <div class="sub-section">
+                    <div class="sub-section d-none" id="#collectorAssessmentDiv">
                         <div class="sub-section-title"><i class="fa-solid fa-recycle me-2"></i>Collector Assessment</div>
 
                         <!-- Part A -->
@@ -1327,10 +1327,12 @@
             if (row) row.remove();
         }
 
-        function toggleRoleBlock(id, show) {
-            const element = document.getElementById(id);
-            if (show) element.classList.remove('d-none');
-            else element.classList.add('d-none');
+        function toggleRoleBlock(queryString, show) {
+			const elementList = document.querySelectorAll(queryString);
+			[...elementList].forEach(element => {
+				if (show) element.classList.remove('d-none');
+				else element.classList.add('d-none');
+			});
         }
 
         function handleRegToggle(targetId, type) {
