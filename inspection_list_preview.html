@@ -13,6 +13,7 @@
       background-color: #f4f6f9;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       padding-bottom: 3rem;
+	  font-size: 0.8rem;
     }
     .card {
       border: 1px solid #e0e0e0;
@@ -80,14 +81,15 @@
         <form id="searchForm" onsubmit="event.preventDefault(); applySearchFilters();">
           <div class="row g-3">
             
-            <!-- Inspection Ref No (Full Width) -->
+			<!-- Any keywords (Full Width) -->
             <div class="col-12">
-              <label for="searchRefNo" class="form-label fw-semibold">Inspection Ref.No.</label>
-              <input type="text" id="searchRefNo" class="form-control" placeholder="(e.g.: INS-2026-0001)">
-            </div>
-
+              <label for="searchCompany" class="form-label fw-semibold">Any Keywords</label>
+              <input type="text" id="searchCompany" class="form-control" placeholder="(Company Names/BRN/Registration No./Inspection Reference No.)">
+            </div>			            
+			
             <!-- Registration No (Full Width with Tip) -->
-            <div class="col-12">
+            <!--
+			<div class="col-6">
               <label for="searchRegNo" class="form-label fw-semibold">
                 Registration No.
                 <i class="fa-solid fa-circle-info text-info ms-1" 
@@ -100,6 +102,15 @@
                 <small>Keyword examples: For REE-1 Supplier: L18-0001 | Non-registered: N18-0001 | REE-5 Seller: R18-0001 | Non-registered: NR18-0001 | REE-5A Collector: C18-0001 | Non-registered: NC18-0001</small>
               </div>
             </div>
+			-->
+			
+            <!-- Inspection Ref No (Full Width) -->
+			<!--             
+			<div class="col-6">
+              <label for="searchRefNo" class="form-label fw-semibold">Inspection Ref.No.</label>
+              <input type="text" id="searchRefNo" class="form-control" placeholder="(e.g.: INS-2026-0001)">
+            </div>
+			-->		
 
             <!-- Status (50% Width) -->
             <div class="col-md-6 col-12">
@@ -118,13 +129,17 @@
                 <option value="Draft">Draft</option>
               </select>
             </div>
-
-            <!-- Company Name (50% Width) -->
+			
+            <!-- Inspection Team To (Levy Team / Enforcement Team) -->
             <div class="col-md-6 col-12">
-              <label for="searchCompany" class="form-label fw-semibold">Company Name</label>
-              <input type="text" id="searchCompany" class="form-control" placeholder="(Any English/Chinese characters)">
+              <label for="searchTeam" class="form-label fw-semibold">Team</label>
+              <select id="searchTeam" class="form-select">
+                <option value="Any" selected>Any</option>
+                <option value="Levy Team">Levy Team</option>
+                <option value="Enforcement Team">Enforcement Team</option>
+              </select>
             </div>
-
+			
             <!-- Inspection Date From (50% Width) -->
             <div class="col-md-6 col-12">
               <label for="searchDateFrom" class="form-label fw-semibold">Inspection Date (From)</label>
@@ -136,7 +151,7 @@
               <label for="searchDateTo" class="form-label fw-semibold">Inspection Date (To)</label>
               <input type="date" id="searchDateTo" class="form-control">
             </div>
-
+			
           </div>
 
           <div class="d-flex justify-content-end gap-2 mt-4">
@@ -181,11 +196,8 @@
           </div>
         </div>
 		<div class="row align-items-center mb-2">
-			<div class="col-12">
-				<div class="alert alert-info mb-0 py-2 fs-7" role="alert">
-					<i class="fa-solid fa-circle-info me-1"></i>
-					Inspection Statistic/Data Report (e.g.: Export data) will go to Reports menu.
-				</div>
+			<div class="d-grid gap-2">
+				<button class="btn btn-sm btn-primary" type="button" onclick="alert('Export All data SUCCESS.')"><i class="fa-solid fa-file-export me-2"></i>Export all data into Excel</button>
 			</div>
 		</div>
       </div>
@@ -224,17 +236,20 @@
               <th scope="col" style="width: 40px;">
                 <input class="form-check-input" type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll(this)">
               </th>
+              <th scope="col" class="sortable" onclick="sortTable('insDate')">
+                Inspection Date <span id="sort-insDate" class="text-muted"><i class="fa-solid fa-sort ms-1"></i></span>
+              </th>			  
               <th scope="col" class="sortable" onclick="sortTable('refId')">
-                Reference No <span id="sort-refId" class="text-muted"><i class="fa-solid fa-sort ms-1"></i></span>
+                Inspection Ref No <span id="sort-refId" class="text-muted"><i class="fa-solid fa-sort ms-1"></i></span>
               </th>
+              <th scope="col" class="sortable" onclick="sortTable('team')">
+                Team <span id="sort-team" class="text-muted"><i class="fa-solid fa-sort ms-1"></i></span>
+              </th>			  
               <th scope="col" class="sortable" onclick="sortTable('regId')">
                 Registered No <span id="sort-regId" class="text-muted"><i class="fa-solid fa-sort ms-1"></i></span>
               </th>
               <th scope="col" class="sortable" onclick="sortTable('cmpName')">
                 Company Name <span id="sort-cmpName" class="text-muted"><i class="fa-solid fa-sort ms-1"></i></span>
-              </th>
-              <th scope="col" class="sortable" onclick="sortTable('insDate')">
-                Inspection Date <span id="sort-insDate" class="text-muted"><i class="fa-solid fa-sort ms-1"></i></span>
               </th>
               <th scope="col" class="sortable" onclick="sortTable('status')">
                 Status <span id="sort-status" class="text-muted"><i class="fa-solid fa-sort ms-1"></i></span>
@@ -304,25 +319,62 @@
       const companySuffixes = ["Electronics Ltd.", "Trading Co.", "Recycling Centre", "Appliance Services", "Tech Supplies", "Logistics Ltd.", "Enterprise", "Retail Group"];
       const chinesePrefixes = ["香港", "亞太", "環球", "華創", "長青", "太平洋", "鴻運", "領航", "聯營", "新星"];
       const chineseSuffixes = ["電器有限公司", "貿易公司", "回收中心", "服務有限公司", "科技器材", "物流有限公司", "企業集團"];
+	  const teams = ["Levy", "Enforcement"];
 
       const regTypes = [
-        { prefix: "L18-", registered: true, role: "Supplier" },
-        { prefix: "N18-", registered: false, role: "Supplier" },
-        { prefix: "R18-", registered: true, role: "Seller" },
-        { prefix: "NR18-", registered: false, role: "Seller" },
-        { prefix: "C18-", registered: true, role: "Collector" },
-        { prefix: "NC18-", registered: false, role: "Collector" }
+        { prefix: "EP171/R1/18/L18-", registered: true, role: "Supplier" },
+        { prefix: "EP171/R1/18/N18-", registered: false, role: "Supplier" },
+        { prefix: "EP171/R1/18/R18-", registered: true, role: "Seller" },
+        { prefix: "EP171/R1/18/NR18-", registered: false, role: "Seller" },
+        { prefix: "EP171/R1/18/C18-", registered: true, role: "Collector" },
+        { prefix: "EP171/R1/18/NC18-", registered: false, role: "Collector" }
       ];
 
       const dataset = [];
 
-      for (let i = 1; i <= 50; i++) {
+      for (let i = 1; i <= 30; i++) {
         const refSeq = String(i).padStart(4, '0');
         const refId = `INS-2026-${refSeq}`;
         
-        const regType = regTypes[Math.floor(Math.random() * regTypes.length)];
-        const regId = `${regType.prefix}${String(Math.floor(Math.random() * 8999) + 1000)}`;
+		let haveSupplier = Math.floor(Math.random() * 2);
+		let haveSeller = Math.floor(Math.random() * 2);
+		let haveCollector = Math.floor(Math.random() * 2);
+		let regId = {};
 
+		if (haveSupplier > 0) {
+			let regOrNonReg = Math.floor(Math.random() * 2);
+			if (regOrNonReg > 0) {
+				regId['Supplier'] = `${regTypes[0].prefix}${String(Math.floor(Math.random() * 8999) + 1000)}`;
+			} else {
+				regId['Supplier'] = `${regTypes[1].prefix}${String(Math.floor(Math.random() * 8999) + 1000)}`;
+			}			
+		} else {
+			regId['Supplier'] = null;
+		}
+		
+		if (haveSeller > 0) {
+			let regOrNonReg = Math.floor(Math.random() * 2);
+			if (regOrNonReg > 0) {
+				regId['Seller'] = `${regTypes[2].prefix}${String(Math.floor(Math.random() * 8999) + 1000)}`;
+			} else {
+				regId['Seller'] = `${regTypes[3].prefix}${String(Math.floor(Math.random() * 8999) + 1000)}`;
+			}			
+		} else {
+			regId['Seller'] = null;
+		}
+		
+		if (haveCollector > 0 || (regId['Supplier'] == null && regId['Seller'] == null)) {
+			let regOrNonReg = Math.floor(Math.random() * 2);
+			if (regOrNonReg > 0) {
+				regId['Collector'] = `${regTypes[4].prefix}${String(Math.floor(Math.random() * 8999) + 1000)}`;
+			} else {
+				regId['Collector'] = `${regTypes[5].prefix}${String(Math.floor(Math.random() * 8999) + 1000)}`;
+			}			
+		} else {
+			regId['Collector'] = null;
+		}
+		
+		
         const engCmp = `${companyPrefixes[i % companyPrefixes.length]} ${companySuffixes[i % companySuffixes.length]}`;
         const chiCmp = `${chinesePrefixes[i % chinesePrefixes.length]}${chineseSuffixes[i % chineseSuffixes.length]}`;
         const cmpName = `${engCmp} / ${chiCmp}`;
@@ -334,7 +386,9 @@
 
         const status = statuses[i % statuses.length];
         const handler = handlers[i % handlers.length];
-
+		
+		const team = teams[Math.floor(Math.random() * teams.length)];
+		
         dataset.push({
           id: i,
           refId: refId,
@@ -343,11 +397,16 @@
           insDate: insDate,
           status: status,
           handler: handler,
-          selected: false
+          selected: false,
+		  team: team
         });
       }
       return dataset;
     }
+	
+	function nullToEmpty(data) {
+		return data == null ? '' : (data + '<br>');
+	}
 
     // Status Badge Color Helper
     function getStatusBadgeClass(status) {
@@ -394,10 +453,14 @@
             <td>
               <input class="form-check-input row-checkbox" type="checkbox" ${row.selected ? 'checked' : ''} onchange="toggleRowSelection(${row.id}, this.checked)">
             </td>
+			<td>${row.insDate}</td>
             <td class="fw-semibold text-primary">${row.refId}</td>
-            <td><code>${row.regId}</code></td>
+			<td><span class="badge text-bg-light">${row.team}</span></td>`;
+            
+		  let regIdString = nullToEmpty(row.regId.Supplier) + nullToEmpty(row.regId.Seller) + nullToEmpty(row.regId.Collector); 
+		  tr.innerHTML += 
+			`<td><code>${regIdString}</code></td>
             <td>${row.cmpName}</td>
-            <td>${row.insDate}</td>
             <td><span class="badge badge-status ${getStatusBadgeClass(row.status)}">${row.status}</span></td>
             <td>${row.handler}</td>
             <td class="text-center">
@@ -483,7 +546,7 @@
       }
 
       // Reset Header Indicators
-      ['refId', 'regId', 'cmpName', 'insDate', 'status', 'handler'].forEach(col => {
+      ['refId', 'regId', 'cmpName', 'insDate', 'status', 'handler', 'team'].forEach(col => {
         const el = document.getElementById(`sort-${col}`);
         if (el) el.innerHTML = '<i class="fa-solid fa-sort ms-1"></i>';
       });
@@ -571,7 +634,8 @@
           item.cmpName.toLowerCase().includes(quickFilterStr) ||
           item.status.toLowerCase().includes(quickFilterStr) ||
           item.handler.toLowerCase().includes(quickFilterStr) ||
-          item.insDate.toLowerCase().includes(quickFilterStr);
+          item.insDate.toLowerCase().includes(quickFilterStr) ||
+		  item.team.toLowerCase().includes(quickFilterStr);
         return matchesQuick;
       });
       currentPage = 1;
@@ -616,11 +680,14 @@
       }
 
       let csvContent = "data:text/csv;charset=utf-8,";
-      csvContent += "Reference No,Registered No,Company Name,Inspection Date,Status,Current Handler\n";
+      csvContent += "Reference No,Team,Registered No (Supplier),Registered No (Seller),Registered No (Collector),Company Name,Inspection Date,Status,Current Handler\n";
 
       filteredData.forEach(row => {
         const cmpClean = `"${row.cmpName.replace(/"/g, '""')}"`;
-        csvContent += `${row.refId},${row.regId},${cmpClean},${row.insDate},${row.status},${row.handler}\n`;
+		const regIDSupplier = row.regId.Supplier == null ? '-' : row.regId.Supplier;
+		const regIDSeller = row.regId.Seller == null ? '-' : row.regId.Seller;
+		const regIDCollector = row.regId.Collector == null ? '-' : row.regId.Collector;
+        csvContent += `${row.refId},${row.team},${regIDSupplier},${regIDSeller},${regIDCollector},${cmpClean},${row.insDate},${row.status},${row.handler}\n`;
       });
 
       const encodedUri = encodeURI(csvContent);
