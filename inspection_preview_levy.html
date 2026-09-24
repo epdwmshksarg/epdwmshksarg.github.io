@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspection Form - Levy Team Mockup</title>
+  <!-- Bootstrap 5 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f4f6f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding-bottom: 3rem;
+	  font-size: 0.85rem;
+    }
+    .main-card {
+      background-color: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+    }
+    .section-card {
+      border: 1px solid #dedede;
+      border-radius: 6px;
+      background-color: #ffffff;
+      margin-bottom: 1.5rem;
+    }
+    .section-header {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #dedede;
+      font-weight: 600;
+      padding: 0.75rem 1.25rem;
+      color: #0d6efd;
+    }
+    /* White background for input controls */
+    .form-control, .form-select {
+      background-color: #ffffff !important;
+      border: 1px solid #ced4da;
+    }
+    .form-control[readonly], .form-control[disabled],
+    .form-select[disabled] {
+      background-color: #e9ecef !important;
+    }
+    .signature-box {
+      border: 2px dashed #ccc;
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+      background-color: #fafafa;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6c757d;
+    }
+    .nav-progress {
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Header -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary nav-progress mb-4 shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">
+        <i class="fa-solid fa-file-signature me-2"></i>Levy Team Inspection Form
+      </a>
+      <span class="navbar-text text-white">
+        (For Section 2/4)
+      </span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+
+        <form id="levyInspectionForm" onsubmit="event.preventDefault(); alert('Form Submitted Successfully!');">
+          <div class="main-card">
+            <h3 class="mb-4 text-center fw-bold text-dark border-bottom pb-3">Inspection Record Form</h3>
+
+            <!-- Role of Team Section -->
+            <div class="mb-4">
+              <label for="roleOfTeam" class="form-label fw-bold">Role of Team <small class="text-muted fw-normal">(Auto selected based on user role)</small></label>
+              <select id="roleOfTeam" class="form-select" disabled>
+                <option value="Levy Team" selected>Levy Team</option>
+              </select>
+            </div>
+
+            <!-- Part A - General Information -->
+            <div class="section-card">
+              <div class="section-header">
+                <i class="fa-solid fa-circle-info me-2"></i>Part A - General Information
+              </div>
+              <div class="card-body p-4">
+                <div class="row g-3">
+
+                  <!-- Inspection Reference No (50% Width) -->
+                  <div class="col-md-6 col-12">
+                    <label for="inspectionRefNo" class="form-label fw-semibold">Inspection Reference No.</label>
+                    <input type="text" id="inspectionRefNo" class="form-control" placeholder="(Will be generated after submitted)" disabled>
+                  </div>
+
+                  <!-- REE-1 Registration No (50% Width) -->
+                  <div class="col-md-6 col-12">
+                    <label for="ree1RegNo" class="form-label fw-semibold">REE-1 Registration No.</label>
+                    <input type="text" id="ree1RegNo" class="form-control" placeholder="(e.g.: EP-L18-0001)">
+                  </div>
+
+                  <!-- Inspection Date (1/3 Width) -->
+                  <div class="col-md-4 col-12">
+                    <label for="inspectionDate" class="form-label fw-semibold">Inspection Date</label>
+                    <input type="date" id="inspectionDate" class="form-control">
+                  </div>
+
+                  <!-- Time From (1/3 Width) -->
+                  <div class="col-md-4 col-12">
+                    <label for="timeFrom" class="form-label fw-semibold">Time (From)</label>
+                    <input type="time" id="timeFrom" class="form-control">
+                  </div>
+
+                  <!-- Time To / Second From (1/3 Width) -->
+                  <div class="col-md-4 col-12">
+                    <label for="timeTo" class="form-label fw-semibold">Time (To)</label>
+                    <input type="time" id="timeTo" class="form-control">
+                  </div>
+
+                  <!-- Company Name Eng (50% Width, Readonly) -->
+                  <div class="col-md-6 col-12">
+                    <label for="cmpNameEng" class="form-label fw-semibold">Company Name (Eng)</label>
+                    <input type="text" id="cmpNameEng" class="form-control" placeholder="Will be retrieve from REE-1 case directly" readonly>
+                  </div>
+
+                  <!-- Company Name Chi (50% Width, Readonly) -->
+                  <div class="col-md-6 col-12">
+                    <label for="cmpNameChi" class="form-label fw-semibold">Company Name (Chi)</label>
+                    <input type="text" id="cmpNameChi" class="form-control" placeholder="Will be retrieve from REE-1 case directly" readonly>
+                  </div>
+
+                  <!-- Address Nested Section (Readonly) -->
+                  <div class="col-12">
+                    <div class="p-3 bg-light border rounded">
+                      <label class="form-label fw-bold text-secondary mb-1">Address</label>
+                      <small class="text-muted d-block mb-3">(Will be retrieve from REE-1 Business Address directly)</small>
+                      <div class="row g-2">
+                        <div class="col-md-4 col-6">
+                          <label for="addrArea" class="form-label fs-7">Area</label>
+                          <input type="text" id="addrArea" class="form-control form-control-sm" readonly>
+                        </div>
+                        <div class="col-md-4 col-6">
+                          <label for="addrDistrict" class="form-label fs-7">District</label>
+                          <input type="text" id="addrDistrict" class="form-control form-control-sm" readonly>
+                        </div>
+                        <div class="col-md-4 col-12">
+                          <label for="addrStreet" class="form-label fs-7">Estate/Street</label>
+                          <input type="text" id="addrStreet" class="form-control form-control-sm" readonly>
+                        </div>
+                        <div class="col-md-3 col-6">
+                          <label for="addrBuilding" class="form-label fs-7">Building</label>
+                          <input type="text" id="addrBuilding" class="form-control form-control-sm" readonly>
+                        </div>
+                        <div class="col-md-3 col-6">
+                          <label for="addrBlock" class="form-label fs-7">Block</label>
+                          <input type="text" id="addrBlock" class="form-control form-control-sm" readonly>
+                        </div>
+                        <div class="col-md-3 col-6">
+                          <label for="addrFloor" class="form-label fs-7">Floor</label>
+                          <input type="text" id="addrFloor" class="form-control form-control-sm" readonly>
+                        </div>
+                        <div class="col-md-3 col-6">
+                          <label for="addrRoom" class="form-label fs-7">Room/Unit</label>
+                          <input type="text" id="addrRoom" class="form-control form-control-sm" readonly>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Contact Person Section -->
+                  <div class="col-12">
+                    <div class="p-3 bg-light border rounded">
+                      <label class="form-label fw-bold text-secondary mb-2">Contact Person</label>
+                      <div class="row g-2">
+                        <div class="col-md-6 col-12">
+                          <label for="contactName" class="form-label fs-7">Name</label>
+                          <input type="text" id="contactName" class="form-control" placeholder="Will be retrieve from REE-1 case directly" readonly>
+                        </div>
+                        <div class="col-md-6 col-12">
+                          <label for="contactTel" class="form-label fs-7">Tel</label>
+                          <input type="text" id="contactTel" class="form-control" placeholder="Will be retrieve from REE-1 case directly" readonly>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Operation Period -->
+                  <div class="col-md-6 col-12">
+                    <label for="operationPeriod" class="form-label fw-semibold">Operation Period</label>
+                    <select id="operationPeriod" class="form-select" onchange="toggleOperationPeriodOther(this)">
+                      <option value="" selected disabled>-- Select Period --</option>
+                      <option value="Monday-Friday">Monday-Friday</option>
+                      <option value="Monday-Saturday">Monday-Saturday</option>
+                      <option value="All days">All days</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <div id="operationPeriodOtherDiv" class="mt-2 d-none">
+                      <input type="text" id="operationPeriodOther" class="form-control" placeholder="Please specify operation period">
+                    </div>
+                  </div>
+
+                  <!-- Operation Hours -->
+                  <div class="col-md-6 col-12">
+                    <label class="form-label fw-semibold">Operation Hours</label>
+                    <div class="input-group">
+                      <span class="input-group-text">From</span>
+                      <input type="time" id="opHoursFrom" class="form-control">
+                      <span class="input-group-text">To</span>
+                      <input type="time" id="opHoursTo" class="form-control">
+                    </div>
+                  </div>
+
+                  <!-- No. of site staff -->
+                  <div class="col-md-6 col-12">
+                    <label for="siteStaffCount" class="form-label fw-semibold">No. of site staff</label>
+                    <input type="number" id="siteStaffCount" class="form-control" min="0" placeholder="0">
+                  </div>
+
+                  <!-- Inspected By (50% Width) -->
+                  <div class="col-md-6 col-12">
+                    <label class="form-label fw-semibold d-block">Inspected By</label>
+                    <div class="d-flex flex-wrap gap-3 pt-1">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="inspectedBy" id="inspectedBy_EPI1" value="EPI 1">
+                        <label class="form-check-label" for="inspectedBy_EPI1">EPI 1</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="inspectedBy" id="inspectedBy_EPI2" value="EPI 2">
+                        <label class="form-check-label" for="inspectedBy_EPI2">EPI 2</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="inspectedBy" id="inspectedBy_SEPI1" value="SEPI 1">
+                        <label class="form-check-label" for="inspectedBy_SEPI1">SEPI 1</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="inspectedBy" id="inspectedBy_SEPI2" value="SEPI 2">
+                        <label class="form-check-label" for="inspectedBy_SEPI2">SEPI 2</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Report By (50% Width) -->
+                  <div class="col-md-6 col-12">
+                    <label for="reportBy" class="form-label fw-semibold">Report By</label>
+                    <select id="reportBy" class="form-select">
+                      <option value="" selected disabled>-- Select Reporter --</option>
+                      <option value="EPI 1">EPI 1</option>
+                      <option value="EPI 2">EPI 2</option>
+                      <option value="SEPI 1">SEPI 1</option>
+                      <option value="SEPI 2">SEPI 2</option>
+                    </select>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Part B - Findings -->
+            <div class="section-card">
+              <div class="section-header">
+                <i class="fa-solid fa-magnifying-glass-chart me-2"></i>Part B - Findings
+              </div>
+              <div class="card-body p-4">
+                <div class="mb-4">
+                  <label for="partBFindingsText" class="form-label fw-semibold">Findings Remarks</label>
+                  <textarea id="partBFindingsText" class="form-control" rows="15" placeholder="Enter findings details..."></textarea>
+                </div>
+
+                <div class="row g-3">
+                  <!-- Reported By Row (1/3 Width Fields) -->
+                  <div class="col-md-4 col-12">
+                    <label for="partBReportedBy" class="form-label fw-semibold">Reported By</label>
+                    <select id="partBReportedBy" class="form-select">
+                      <option value="" selected disabled>-- Select Officer --</option>
+                      <option value="EPI 1">EPI 1</option>
+                      <option value="EPI 2">EPI 2</option>
+                      <option value="EPI 3">EPI 3</option>
+                      <option value="SEPI 1">SEPI 1</option>
+                      <option value="SEPI 2">SEPI 2</option>
+                      <option value="SEPI 3">SEPI 3</option>
+                      <option value="CEPI 1">CEPI 1</option>
+                      <option value="CEPI 2">CEPI 2</option>
+                      <option value="EPO 1">EPO 1</option>
+                      <option value="EPO 2">EPO 2</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-4 col-12">
+                    <label class="form-label fw-semibold">Signature</label>
+                    <div class="signature-box">
+                      <i class="fa-solid fa-signature me-2"></i>[Sample Signature image]
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 col-12">
+                    <label for="partBReportedDate" class="form-label fw-semibold">Date</label>
+                    <input type="date" id="partBReportedDate" class="form-control">
+                  </div>
+
+                  <!-- Checked By Row (1/3 Width Fields) -->
+                  <div class="col-md-4 col-12">
+                    <label for="partBCheckedBy" class="form-label fw-semibold">Checked By</label>
+                    <select id="partBCheckedBy" class="form-select">
+                      <option value="" selected disabled>-- Select Officer --</option>
+                      <option value="EPI 1">EPI 1</option>
+                      <option value="EPI 2">EPI 2</option>
+                      <option value="EPI 3">EPI 3</option>
+                      <option value="SEPI 1">SEPI 1</option>
+                      <option value="SEPI 2">SEPI 2</option>
+                      <option value="SEPI 3">SEPI 3</option>
+                      <option value="CEPI 1">CEPI 1</option>
+                      <option value="CEPI 2">CEPI 2</option>
+                      <option value="EPO 1">EPO 1</option>
+                      <option value="EPO 2">EPO 2</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-4 col-12">
+                    <label class="form-label fw-semibold">Signature</label>
+                    <div class="signature-box">
+                      <i class="fa-solid fa-signature me-2"></i>[Sample Signature image]
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 col-12">
+                    <label for="partBCheckedDate" class="form-label fw-semibold">Date</label>
+                    <input type="date" id="partBCheckedDate" class="form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Part C - Upload Photo Attachments -->
+            <div class="section-card">
+              <div class="section-header d-flex justify-content-between align-items-center">
+                <span><i class="fa-solid fa-paperclip me-2"></i>Part C - Upload Photo Attachments</span>
+                <button type="button" class="btn btn-sm btn-outline-primary" onclick="addAttachmentRow()">
+                  <i class="fa-solid fa-plus me-1"></i>Add Attachment
+                </button>
+              </div>
+              <div class="card-body p-4">
+                <div id="attachmentsContainer">
+                  <!-- Dynamic Rows -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-flex justify-content-end gap-3 mt-4">
+              <button type="reset" class="btn btn-secondary px-4">Reset</button>
+              <button type="submit" class="btn btn-primary px-5 fw-bold">
+                <i class="fa-solid fa-paper-plane me-2"></i>Submit Form
+              </button>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    let attachmentCounter = 0;
+
+    function toggleOperationPeriodOther(selectEl) {
+      const otherDiv = document.getElementById('operationPeriodOtherDiv');
+      if (selectEl.value === 'Other') {
+        otherDiv.classList.remove('d-none');
+      } else {
+        otherDiv.classList.add('d-none');
+      }
+    }
+
+    function addAttachmentRow() {
+      attachmentCounter++;
+      const container = document.getElementById('attachmentsContainer');
+
+      const row = document.createElement('div');
+      row.className = 'row g-3 align-items-center border p-3 rounded mb-3 bg-light position-relative attachment-row';
+      row.id = `attachmentRow_${attachmentCounter}`;
+
+      row.innerHTML = `
+        <div class="col-md-4 col-12">
+          <label class="form-label fw-semibold fs-7 mb-1">Select File</label>
+          <input type="file" class="form-control form-control-sm" accept="image/*">
+        </div>
+        <div class="col-md-6 col-12">
+          <label class="form-label fw-semibold fs-7 mb-1">Description</label>
+          <input type="text" class="form-control form-control-sm" placeholder="Enter photo description">
+        </div>
+        <div class="col-md-2 col-12 text-end align-self-end">
+          <button type="button" class="btn btn-danger btn-sm w-100" onclick="removeAttachmentRow('${row.id}')">
+            <i class="fa-solid fa-trash me-1"></i>Delete
+          </button>
+        </div>
+      `;
+
+      container.appendChild(row);
+    }
+
+    function removeAttachmentRow(rowId) {
+      const row = document.getElementById(rowId);
+      if (row) {
+        row.remove();
+      }
+    }
+
+    // Initialize with 1 default attachment row
+    document.addEventListener('DOMContentLoaded', () => {
+      addAttachmentRow();
+    });
+  </script>
+</body>
+</html>
