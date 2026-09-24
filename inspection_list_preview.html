@@ -680,14 +680,14 @@
       }
 
       let csvContent = "data:text/csv;charset=utf-8,";
-      csvContent += "Reference No,Team,Registered No (Supplier),Registered No (Seller),Registered No (Collector),Company Name,Inspection Date,Status,Current Handler\n";
+      csvContent += "Reference No,Team,Registered No (Supplier),Registered No (Seller),Registered No (Collector),Company Name (Eng),Company Name (Chi),Inspection Date,Status,Current Handler\n";
 
       filteredData.forEach(row => {
-        const cmpClean = `"${row.cmpName.replace(/"/g, '""')}"`;
+        const cmpClean = row.cmpName.split('/');
 		const regIDSupplier = row.regId.Supplier == null ? '-' : row.regId.Supplier;
 		const regIDSeller = row.regId.Seller == null ? '-' : row.regId.Seller;
 		const regIDCollector = row.regId.Collector == null ? '-' : row.regId.Collector;
-        csvContent += `${row.refId},${row.team},${regIDSupplier},${regIDSeller},${regIDCollector},${cmpClean},${row.insDate},${row.status},${row.handler}\n`;
+        csvContent += `${row.refId},${row.team},${regIDSupplier},${regIDSeller},${regIDCollector},${cmpClean[0].trim()},${cmpClean[1].trim()},${row.insDate},${row.status},${row.handler}\n`;
       });
 
       const encodedUri = encodeURI(csvContent);
