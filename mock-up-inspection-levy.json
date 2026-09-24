@@ -1,0 +1,211 @@
+[
+    {
+        "title": "Role of Team (Will be auto selected based on user role)",
+        "inputType": "dropdown",
+        "inputOptions": [
+            "Levy Team"
+        ],
+        "disabled": true
+    },
+    {
+        "title": "Part A - General Information",
+        "inputs": [
+            {
+                "title": "Inspection Reference No.",
+                "inputType": "text",
+                "placeholder": "(Will be generated after submitted)",
+                "sytle": "50% width in block"
+            },            
+            {
+                "title": "REE-1 Registration No.",
+                "inputType": "text",
+                "placeholder": "(e.g.: EP-L18-0001)",
+                "sytle": "50% width in block"
+            },
+            {
+                "title": "Inspection Date",
+                "inputType": "date",
+                "sytle": "1/3 width in block"
+            },
+            {
+                "title": "Time (From)",
+                "inputType": "time",
+                "sytle": "1/3 width in block"
+            },
+            {
+                "title": "Time (From)",
+                "inputType": "time",
+                "sytle": "1/3 width in block"
+            },
+            {
+                "title": "Company Name (Eng)",
+                "inputType": "text",
+                "placeholder": "Will be retrieve from REE-1 case directly",
+                "readonly": true,
+                "sytle": "50% width in block"
+            },
+            {
+                "title": "Company Name (Chi)",
+                "inputType": "text",
+                "placeholder": "Will be retrieve from REE-1 case directly",
+                "readonly": true,
+                "sytle": "50% width in block"
+            },            
+            {
+                "title": "Address",
+                "remarkText": "Will be retrieve from REE-1 Businese Address directly",
+                "inputs": [
+                    {
+                        "title": "Area",
+                        "inputType": "text"
+                    },
+                    {
+                        "title": "District",
+                        "inputType": "text"
+                    },
+                    {
+                        "title": "Estate/Street",
+                        "inputType": "text"
+                    },
+                    {
+                        "title": "Building",
+                        "inputType": "text"
+                    },
+                    {
+                        "title": "Block",
+                        "inputType": "text"
+                    },
+                    {
+                        "title": "Floor",
+                        "inputType": "text"
+                    },
+                    {
+                        "title": "Room/Unit",
+                        "inputType": "text"
+                    }	                    
+                ],
+                "readonly": true
+            },
+            {
+                "title": "Contact Person",
+                "inputs": [
+                    {
+                        "title": "Name",
+                        "inputType": "text",
+                        "placeholder":"Will be retrieve from REE-1 case directly",
+                        "readonly": true,
+                        "sytle": "50% width in block"
+                    },
+                    {
+                        "title": "Tel",
+                        "inputType": "text",
+                        "placeholder":"Will be retrieve from REE-1 case directly",
+                        "readonly": true,
+                        "sytle": "50% width in block"
+                    }                    
+                ]
+            },
+            {
+                "title": "Operation Period",
+                "inputType": "dropdown",
+                "inputOptions": [
+                    "Monday-Friday", "Monday-Saturday", "All days", {
+                        "title": "Other",
+                        "inputType": "text"
+                    }
+                ]
+            },
+            {
+                "title": "Operation Hours",
+                "inputs": [
+                    {
+                        "title": "From",
+                        "intputType": "time"
+                    },
+                    {
+                        "title": "To",
+                        "intputType": "time"
+                    }
+                ]
+            },
+            {
+                "title": "No. of site staff",
+                "inputType": "number"
+            },
+            {
+                "title": "Inspected By",
+                "inputType": "checkbox",
+                "inputOptions": [
+                    "EPI 1", "EPI 2", "SEPI 1", "SEPI 2"
+                ],
+                "sytle": "50% width in block"
+            },
+            {                
+                "title": "Report By",
+                "inputType": "dropdown",
+                "inputOptions": [
+                    "EPI 1", "EPI 2", "SEPI 1", "SEPI 2"
+                ],
+                "sytle": "50% width in block"
+            }
+        ]
+    },
+    {
+        "title": "Part B - Findings",
+        "inputs": [
+            {
+                "inputType": "textarea",
+                "initialRows": 15
+            },
+            {
+                "title": "Reported By",
+                "inputType": "dropdown",
+                "inputOptions": [
+                    "EPI 1", "EPI 2", "EPI 3", "SEPI 1", "SEPI 2", "SEPI 3", "CEPI 1", "CEPI 2", "EPO 1", "EPO 2"
+                ],
+                "style": "1/3 width in block"
+            },
+            {
+                "title": "Signature",
+                "img": "Sample Signature image",
+                "style": "1/3 width in block"
+            },
+            {
+                "title": "Date",
+                "inputType": "date"
+            },
+            {
+                "title": "Checked By",
+                "inputType": "dropdown",
+                "inputOptions": [
+                    "EPI 1", "EPI 2", "EPI 3", "SEPI 1", "SEPI 2", "SEPI 3", "CEPI 1", "CEPI 2", "EPO 1", "EPO 2"
+                ],
+                "style": "1/3 width in block"
+            },
+            {
+                "title": "Signature",
+                "img": "Sample Signature image",
+                "style": "1/3 width in block"
+            },
+            {
+                "title": "Date",
+                "inputType": "date"
+            }  
+        ]
+    },
+    {
+        "title": "Part C - Upload Photo Attachments",
+        "inputType": "file",
+        "inputOptions": [
+            {
+                "title": "Description",
+                "inputType": "text"
+            },
+            {
+                "title": "Delete",
+                "inputType": "button"
+            }
+        ],
+        "multiple": true
+    }
+]
