@@ -113,7 +113,7 @@
 			-->		
 
             <!-- Status (50% Width) -->
-            <div class="col-md-6 col-12">
+            <div class="col-4">
               <label for="searchStatus" class="form-label fw-semibold">Status</label>
               <select id="searchStatus" class="form-select">
                 <option value="Any" selected>Any</option>
@@ -131,23 +131,23 @@
             </div>
 			
             <!-- Inspection Team To (Levy Team / Enforcement Team) -->
-            <div class="col-md-6 col-12">
+<!--             <div class="col-md-6 col-12">
               <label for="searchTeam" class="form-label fw-semibold">Team</label>
               <select id="searchTeam" class="form-select">
                 <option value="Any" selected>Any</option>
                 <option value="Levy Team">Levy Team</option>
                 <option value="Enforcement Team">Enforcement Team</option>
               </select>
-            </div>
+            </div> -->
 			
             <!-- Inspection Date From (50% Width) -->
-            <div class="col-md-6 col-12">
+            <div class="col-4">
               <label for="searchDateFrom" class="form-label fw-semibold">Inspection Date (From)</label>
               <input type="date" id="searchDateFrom" class="form-control">
             </div>
 
             <!-- Inspection Date To (50% Width) -->
-            <div class="col-md-6 col-12">
+            <div class="col-4">
               <label for="searchDateTo" class="form-label fw-semibold">Inspection Date (To)</label>
               <input type="date" id="searchDateTo" class="form-control">
             </div>
@@ -242,9 +242,9 @@
               <th scope="col" class="sortable" onclick="sortTable('refId')">
                 Inspection Ref No <span id="sort-refId" class="text-muted"><i class="fa-solid fa-sort ms-1"></i></span>
               </th>
-              <th scope="col" class="sortable" onclick="sortTable('team')">
+<!--               <th scope="col" class="sortable" onclick="sortTable('team')">
                 Team <span id="sort-team" class="text-muted"><i class="fa-solid fa-sort ms-1"></i></span>
-              </th>			  
+              </th>	 -->		  
               <th scope="col" class="sortable" onclick="sortTable('regId')">
                 Registered No <span id="sort-regId" class="text-muted"><i class="fa-solid fa-sort ms-1"></i></span>
               </th>
@@ -454,8 +454,8 @@
               <input class="form-check-input row-checkbox" type="checkbox" ${row.selected ? 'checked' : ''} onchange="toggleRowSelection(${row.id}, this.checked)">
             </td>
 			<td>${row.insDate}</td>
-            <td class="fw-semibold text-primary">${row.refId}</td>
-			<td><span class="badge text-bg-light">${row.team}</span></td>`;
+            <td class="fw-semibold text-primary">${row.refId}</td>`;
+			//<td><span class="badge text-bg-light">${row.team}</span></td>`;
             
 		  let regIdString = nullToEmpty(row.regId.Supplier) + nullToEmpty(row.regId.Seller) + nullToEmpty(row.regId.Collector); 
 		  tr.innerHTML += 
@@ -634,8 +634,8 @@
           item.cmpName.toLowerCase().includes(quickFilterStr) ||
           item.status.toLowerCase().includes(quickFilterStr) ||
           item.handler.toLowerCase().includes(quickFilterStr) ||
-          item.insDate.toLowerCase().includes(quickFilterStr) ||
-		  item.team.toLowerCase().includes(quickFilterStr);
+          item.insDate.toLowerCase().includes(quickFilterStr);
+		  //item.team.toLowerCase().includes(quickFilterStr);
         return matchesQuick;
       });
       currentPage = 1;
@@ -680,14 +680,14 @@
       }
 
       let csvContent = "data:text/csv;charset=utf-8,";
-      csvContent += "Reference No,Team,Registered No (Supplier),Registered No (Seller),Registered No (Collector),Company Name (Eng),Company Name (Chi),Inspection Date,Status,Current Handler\n";
+      csvContent += "Reference No,Registered No (Supplier),Registered No (Seller),Registered No (Collector),Company Name (Eng),Company Name (Chi),Inspection Date,Status,Current Handler\n";
 
       filteredData.forEach(row => {
         const cmpClean = row.cmpName.split('/');
 		const regIDSupplier = row.regId.Supplier == null ? '-' : row.regId.Supplier;
 		const regIDSeller = row.regId.Seller == null ? '-' : row.regId.Seller;
 		const regIDCollector = row.regId.Collector == null ? '-' : row.regId.Collector;
-        csvContent += `${row.refId},${row.team},${regIDSupplier},${regIDSeller},${regIDCollector},${cmpClean[0].trim()},${cmpClean[1].trim()},${row.insDate},${row.status},${row.handler}\n`;
+        csvContent += `${row.refId},${regIDSupplier},${regIDSeller},${regIDCollector},${cmpClean[0].trim()},${cmpClean[1].trim()},${row.insDate},${row.status},${row.handler}\n`;
       });
 
       const encodedUri = encodeURI(csvContent);
