@@ -1730,7 +1730,7 @@
         function handleRegToggle(targetId, type) {
             const box = document.getElementById(targetId);
             if (type === 'Registered') {
-                box.innerHTML = `<input name="suREERegNo" id="suREERegNo" type="text" class="form-control form-control-sm form-control form-control-sm-sm mt-1" placeholder="Enter Reg. No. (EP-L18-0000 for demo)" onchange="getDataForPreview(this)">`;
+                box.innerHTML = `<input name="suREERegNo" id="suREERegNo" type="text" class="form-control form-control-sm form-control form-control-sm-sm mt-1" placeholder="Enter Reg. No." onchange="getDataForPreview(this)">`;
             } else {
                 box.innerHTML = `<small class="text-muted">Will be generated after submitted.</small>`;
 				getDataForPreview('');
