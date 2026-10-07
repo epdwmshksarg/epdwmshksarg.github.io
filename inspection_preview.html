@@ -98,7 +98,6 @@
 
         .form-check-label {
             cursor: pointer;
-            user-select: none;
             color: #1e293b;
             font-size: 0.91rem;
             font-weight: 500;
@@ -153,7 +152,6 @@
             background-color: #f8fafc;
             color: #475569;
             font-size: 0.82rem;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
             padding: 10px;
             border-bottom: 1px solid #cbd5e1;
@@ -266,12 +264,93 @@
                 </div>
             </div> -->
 
+            <!-- Inspection Role Registration Section -->
+            <div class="sub-section">
+                <div class="sub-section-title"><i class="fa-solid fa-user-tag me-2"></i>Inspection Role Options</div>
+                <div class="row m-2">
+                    
+                    <!-- Supplier -->
+                    <div class="col-md-4">
+                        <div class="p-3 rounded bg-supplier bg-supplier-border">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="role_supplier_chk" onchange="toggleRoleBlock('#supplier_reg_block, #supplierAssessmentDiv, #enforcementActionForSupplier', this.checked)">
+                                <label class="form-check-label fw-bold text-primary" for="role_supplier_chk">Supplier</label>
+                            </div>
+                            <div id="supplier_reg_block" class="ms-3 d-none">
+                                <label class="form-label d-block small fw-bold">Registration</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="supplier_reg_type" id="sup_reg_registered" value="Registered" onchange="handleRegToggle('sup_reg_num_box', 'Registered')">
+                                    <label class="form-check-label" for="sup_reg_registered">Registered</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="supplier_reg_type" id="sup_reg_non" value="Non-registered" checked onchange="handleRegToggle('sup_reg_num_box', 'Non-registered')">
+                                    <label class="form-check-label" for="sup_reg_non">Non-registered</label>
+                                </div>
+                                <div id="sup_reg_num_box" class="mt-2">
+                                    <small class="text-muted">Ref No. will be generated after submitted.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Seller -->
+                    <div class="col-md-4">
+                        <div class="p-3 rounded bg-seller bg-seller-border">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="role_seller_chk" onchange="toggleRoleBlock('#seller_reg_block, #sellerAssessmentDiv', this.checked)">
+                                <label class="form-check-label fw-bold text-primary" for="role_seller_chk">Seller</label>
+                            </div>
+                            <div id="seller_reg_block" class="ms-3 d-none">
+                                <label class="form-label d-block small fw-bold">Registration</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="seller_reg_type" id="sel_reg_registered" value="Registered" onchange="handleRegToggle('sel_reg_num_box', 'Registered')">
+                                    <label class="form-check-label" for="sel_reg_registered">Registered</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="seller_reg_type" id="sel_reg_non" value="Non-registered" checked onchange="handleRegToggle('sel_reg_num_box', 'Non-registered')">
+                                    <label class="form-check-label" for="sel_reg_non">Non-registered</label>
+                                </div>
+                                <div id="sel_reg_num_box" class="mt-2">
+                                    <small class="text-muted">Ref No. will be generated after submitted.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Collector -->
+                    <div class="col-md-4">
+                        <div class="p-3 rounded bg-collector bg-collector-border">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="role_collector_chk" onchange="toggleRoleBlock('#collector_reg_block, #collectorAssessmentDiv', this.checked)">
+                                <label class="form-check-label fw-bold text-primary" for="role_collector_chk">Collector</label>
+                            </div>
+                            <div id="collector_reg_block" class="ms-3 d-none">
+                                <label class="form-label d-block small fw-bold">Registration</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="collector_reg_type" id="col_reg_registered" value="Registered" onchange="handleRegToggle('col_reg_num_box', 'Registered')">
+                                    <label class="form-check-label" for="col_reg_registered">Registered</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="collector_reg_type" id="col_reg_non" value="Non-registered" checked onchange="handleRegToggle('col_reg_num_box', 'Non-registered')">
+                                    <label class="form-check-label" for="col_reg_non">Non-registered</label>
+                                </div>
+                                <div id="col_reg_num_box" class="mt-2">
+                                    <small class="text-muted">Ref No. will be generated after submitted.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>				
+           
+		   
             <div id="sec-main" class="card card-custom">
-                <div class="card-header-custom">
+                <div class="card-header-custom collapsableDiv" onclick="toggleDivShowHide('#mainInspectionInfoDiv')">
                     <h5><i class="fa-solid fa-circle-info text-primary"></i> 1. Main Inspection Info</h5>
                 </div>
-                <div class="card-body p-4">
-                    
+                <div class="card-body p-4" id="mainInspectionInfoDiv">
+				
                     <!-- Inspection Type (Changed to Radio Buttons) -->
                     <div class="mb-4 p-3 border rounded bg-white">
                         <label class="form-label d-block text-dark fw-bold">Inspection Type</label>
@@ -293,7 +372,7 @@
 
                     <!-- Inspectors, Schedule, Location & Interviewees -->
                     <div class="sub-section">
-                        <div class="sub-section-title"><i class="fa-regular fa-calendar-check me-2"></i>Inspectors, Schedule, Location & Interviewees</div>
+                        <div class="sub-section-title"><i class="fa-regular fa-calendar-check me-2"></i>Inspectors, Schedule & Interviewees</div>
                         
                         <div class="row g-3 mx-1 mb-2 mb-3 mx-1">
                             <div class="col-md-6">
@@ -383,8 +462,9 @@
                                     </div>										
                                 </div>
                             </div>
-                        </div>
-						
+                        </div>										
+                    </div>
+					
 						<!-- Company Properties -->
 						<div class="sub-section mb-3 mx-1">
 							<div class="sub-section-title"><i class="fa-solid fa-building me-2"></i>Company Properties</div>
@@ -421,7 +501,7 @@
 								</div>								
 								
 								<!-- Company Contact Info -->
-								<div class="border rounded bg-white p-3 mx-1">
+								<div class="border rounded bg-white p-2">
 									<h6 class="fw-bold mb-3 text-secondary"><i class="fa-solid fa-address-book me-2"></i>Company Contact Person</h6>
 									<div class="row g-3 mx-1 mb-2">							
 										<div class="col-md-6">
@@ -448,7 +528,7 @@
 								</div>
 								
 								<!-- Location Sub-Group -->
-								<div class="border rounded bg-white p-3 mx-1">
+								<div class="border rounded bg-white p-2">
 									<h6 class="fw-bold mb-3 text-secondary"><i class="fa-solid fa-location-dot me-2"></i>Businese Address</h6>
 									<div class="row g-3 mx-1 mb-2">
 										<div class="col-md-12 quickSearchDiv">
@@ -484,79 +564,80 @@
 											<input type="text" class="form-control form-control-sm" id="ba.locRoom" name="location_room">
 										</div>
 									</div>
-								</div>
-						
+								</div>						
 							</div>
 						</div>						
-
-                        <!-- Location Sub-Group -->
-                        <div class="border rounded bg-white p-3 mb-3 mx-1">
-							<div class="row g-3 mx-1 mb-2">
-								<div class="col-md-3"><span class="fw-bold mb-3 text-secondary"><i class="fa-solid fa-location-dot me-2"></i>Inspection Address</span></div>
-								<div class="col-md-3"><button class="btn btn-sm btn-outline-primary" onclick="copyAddress(this); return false;">Same as Businese Address</button></div>
+					
+                        <!-- Inspection Address -->
+						<div class="sub-section">
+							<div class="sub-section-title"><i class="fa-solid fa-location-dot me-2"></i>Inspection Address</div>
+							<div class="mb-2 mx-2">
+								<div class="d-flex justify-content-end my-2">
+									<button class="btn btn-sm btn-outline-primary" onclick="copyAddress(this); return false;">Same as Business Address</button>
+								</div>
+								
+								<div class="row g-3 mx-1 mb-2">
+									<div class="col-md-12 quickSearchDiv">
+										<label for="quickSearch" class="form-label">Quick Search</label>
+										<input type="text" class="form-control form-control-sm" id="quickSearch" name="quickSearch">
+									</div>								
+									<div class="col-md-4">
+										<label for="locArea" class="form-label">Area</label>
+										<input type="text" class="form-control form-control-sm" id="ia.locArea" name="location_area">
+									</div>
+									<div class="col-md-4">
+										<label for="locDistrict" class="form-label">District</label>
+										<input type="text" class="form-control form-control-sm" id="ia.locDistrict" name="location_district">
+									</div>
+									<div class="col-md-4">
+										<label for="locStreet" class="form-label">Estate/Street</label>
+										<input type="text" class="form-control form-control-sm" id="ia.locStreet" name="location_street">
+									</div>
+									<div class="col-md-4">
+										<label for="locBuilding" class="form-label">Building</label>
+										<input type="text" class="form-control form-control-sm" id="ia.locBuilding" name="location_building">
+									</div>
+									<div class="col-md-3">
+										<label for="locBlock" class="form-label">Block</label>
+										<input type="text" class="form-control form-control-sm" id="ia.locBlock" name="location_block">
+									</div>
+									<div class="col-md-2">
+										<label for="locFloor" class="form-label">Floor</label>
+										<input type="text" class="form-control form-control-sm" id="ia.locFloor" name="location_floor">
+									</div>
+									<div class="col-md-3">
+										<label for="locRoom" class="form-label">Room/Unit</label>
+										<input type="text" class="form-control form-control-sm" id="ia.locRoom" name="location_room">
+									</div>
+								</div>							
+							</div>							
+						</div>							
+					
+                    <!-- Interviewees Dynamic Group -->
+                    <div class="sub-section">
+                        <div class="sub-section-title"><i class="fa-solid fa-users me-2"></i>Interviewees</div>					
+						<div class="mb-2 mx-2">
+							<div class="d-flex justify-content-end my-2">
+								<button type="button" class="btn btn-outline-primary btn-sm" onclick="addIntervieweeRow()">
+									<i class="fa-solid fa-plus me-1"></i> Add Interviewee
+								</button>
 							</div>
-                            
-							
-                            <div class="row g-3 mx-1 mb-2">
-								<div class="col-md-12 quickSearchDiv">
-									<label for="quickSearch" class="form-label">Quick Search</label>
-									<input type="text" class="form-control form-control-sm" id="quickSearch" name="quickSearch">
-								</div>								
-                                <div class="col-md-4">
-                                    <label for="locArea" class="form-label">Area</label>
-                                    <input type="text" class="form-control form-control-sm" id="ia.locArea" name="location_area">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="locDistrict" class="form-label">District</label>
-                                    <input type="text" class="form-control form-control-sm" id="ia.locDistrict" name="location_district">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="locStreet" class="form-label">Estate/Street</label>
-                                    <input type="text" class="form-control form-control-sm" id="ia.locStreet" name="location_street">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="locBuilding" class="form-label">Building</label>
-                                    <input type="text" class="form-control form-control-sm" id="ia.locBuilding" name="location_building">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="locBlock" class="form-label">Block</label>
-                                    <input type="text" class="form-control form-control-sm" id="ia.locBlock" name="location_block">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="locFloor" class="form-label">Floor</label>
-                                    <input type="text" class="form-control form-control-sm" id="ia.locFloor" name="location_floor">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="locRoom" class="form-label">Room/Unit</label>
-                                    <input type="text" class="form-control form-control-sm" id="ia.locRoom" name="location_room">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Interviewees Dynamic Group -->
-                        <div class="mb-2 mx-2">
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <label class="form-label m-0 fw-bold"><i class="fa-solid fa-users me-2"></i>Interviewees</label>
-                                <button type="button" class="btn btn-outline-primary btn-sm" onclick="addIntervieweeRow()">
-                                    <i class="fa-solid fa-plus me-1"></i> Add Interviewee
-                                </button>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-custom mb-0" id="intervieweesTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Capacity</th>
-                                            <th>Phone No.</th>
-                                            <th>Email</th>
-                                            <th style="width: 80px;">Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="intervieweeTableBody"></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+							<div class="table-responsive">
+								<table class="table table-custom mb-0" id="intervieweesTable">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Capacity</th>
+											<th>Phone No.</th>
+											<th>Email</th>
+											<th style="width: 80px;">Delete</th>
+										</tr>
+									</thead>
+									<tbody id="intervieweeTableBody"></tbody>
+								</table>
+							</div>
+						</div>
+					</div>					
 
                     <!-- Additional Info Sub-Section -->
                     <div class="sub-section">
@@ -665,86 +746,6 @@
                 </div>
                 <div class="card-body p-4">
 
-                    <!-- Inspection Role Registration Section -->
-                    <div class="sub-section">
-                        <div class="sub-section-title"><i class="fa-solid fa-user-tag me-2"></i>Inspection Role Options</div>
-                        <div class="row m-2">
-                            
-                            <!-- Supplier -->
-                            <div class="col-md-4">
-                                <div class="p-3 rounded bg-supplier bg-supplier-border">
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="checkbox" id="role_supplier_chk" onchange="toggleRoleBlock('#supplier_reg_block, #supplierAssessmentDiv, #enforcementActionForSupplier', this.checked)">
-                                        <label class="form-check-label fw-bold text-primary" for="role_supplier_chk">Supplier</label>
-                                    </div>
-                                    <div id="supplier_reg_block" class="ms-3 d-none">
-                                        <label class="form-label d-block small fw-bold">Registration</label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="supplier_reg_type" id="sup_reg_registered" value="Registered" onchange="handleRegToggle('sup_reg_num_box', 'Registered')">
-                                            <label class="form-check-label" for="sup_reg_registered">Registered</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="supplier_reg_type" id="sup_reg_non" value="Non-registered" checked onchange="handleRegToggle('sup_reg_num_box', 'Non-registered')">
-                                            <label class="form-check-label" for="sup_reg_non">Non-registered</label>
-                                        </div>
-                                        <div id="sup_reg_num_box" class="mt-2">
-                                            <small class="text-muted">Ref No. will be generated after submitted.</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Seller -->
-                            <div class="col-md-4">
-                                <div class="p-3 rounded bg-seller bg-seller-border">
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="checkbox" id="role_seller_chk" onchange="toggleRoleBlock('#seller_reg_block, #sellerAssessmentDiv, #enforcementActionForOther', this.checked)">
-                                        <label class="form-check-label fw-bold text-primary" for="role_seller_chk">Seller</label>
-                                    </div>
-                                    <div id="seller_reg_block" class="ms-3 d-none">
-                                        <label class="form-label d-block small fw-bold">Registration</label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="seller_reg_type" id="sel_reg_registered" value="Registered" onchange="handleRegToggle('sel_reg_num_box', 'Registered')">
-                                            <label class="form-check-label" for="sel_reg_registered">Registered</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="seller_reg_type" id="sel_reg_non" value="Non-registered" checked onchange="handleRegToggle('sel_reg_num_box', 'Non-registered')">
-                                            <label class="form-check-label" for="sel_reg_non">Non-registered</label>
-                                        </div>
-                                        <div id="sel_reg_num_box" class="mt-2">
-                                            <small class="text-muted">Ref No. will be generated after submitted.</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Collector -->
-                            <div class="col-md-4">
-                                <div class="p-3 rounded bg-collector bg-collector-border">
-                                    <div class="form-check mb-2">
-                                        <input class="form-check-input" type="checkbox" id="role_collector_chk" onchange="toggleRoleBlock('#collector_reg_block, #collectorAssessmentDiv, #enforcementActionForOther', this.checked)">
-                                        <label class="form-check-label fw-bold text-primary" for="role_collector_chk">Collector</label>
-                                    </div>
-                                    <div id="collector_reg_block" class="ms-3 d-none">
-                                        <label class="form-label d-block small fw-bold">Registration</label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="collector_reg_type" id="col_reg_registered" value="Registered" onchange="handleRegToggle('col_reg_num_box', 'Registered')">
-                                            <label class="form-check-label" for="col_reg_registered">Registered</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="collector_reg_type" id="col_reg_non" value="Non-registered" checked onchange="handleRegToggle('col_reg_num_box', 'Non-registered')">
-                                            <label class="form-check-label" for="col_reg_non">Non-registered</label>
-                                        </div>
-                                        <div id="col_reg_num_box" class="mt-2">
-                                            <small class="text-muted">Ref No. will be generated after submitted.</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
                     <!-- Supplier Assessment Full Form -->
                     <div class="sub-section d-none bg-supplier-border" id="supplierAssessmentDiv">
                         <div class="collapsableDiv sub-section-title bg-supplier" onclick="toggleDivShowHide('#supplierAssessmentDataDiv')"><i class="fa-solid fa-truck-field me-2"></i>Supplier Assessment</div>
@@ -762,7 +763,7 @@
 									<div class="form-check"><input class="form-check-input" type="checkbox" id="ree_pc"><label class="form-check-label" for="ree_pc">Computer</label></div>
 									<div class="form-check"><input class="form-check-input" type="checkbox" id="ree_printer"><label class="form-check-label" for="ree_printer">Printer</label></div>
 									<div class="form-check"><input class="form-check-input" type="checkbox" id="ree_scanner"><label class="form-check-label" for="ree_scanner">Scanner</label></div>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="ree_dryer"><label class="form-check-label" for="ree_dryer">Tumble dryer</label></div>
+									<div class="form-check"><input class="form-check-input" type="checkbox" id="ree_dryer"><label class="form-check-label" for="ree_dryer">Tumble Dryer</label></div>
 									<div class="form-check"><input class="form-check-input" type="checkbox" id="ree_dehumidifier"><label class="form-check-label" for="ree_dehumidifier">Dehumidifier</label></div>
 								</div>
 							</div>
@@ -873,272 +874,298 @@
 						<div id="sellerAssessmentDataDiv" class="py-2 px-3">
 							<!-- Part A -->
 							<div class="border rounded p-3 mb-3">
-								<h6 class="fw-bold mb-3 text-secondary">Part A - Interview with Consumer</h6>
-								<div class="row g-3 mx-1 mb-2 mb-3 mx-1">
-									<div class="col-md-12">
-										<div class="d-flex gap-3">
-											<div class="form-check"><input class="form-check-input" type="radio" name="haveInterview_opt" id="enable_opt" value="Yes"><label class="form-check-label" for="enable_opt">Checked</label></div>
-											<div class="form-check"><input class="form-check-input" type="radio" name="haveInterview_opt" id="disable_opt" value="No"><label class="form-check-label" for="disable_opt">Not Checked</label></div>
+							
+								<div class="form-check mb-2">
+									<input class="form-check-input" type="checkbox" id="sellerDetailPartACheckBox" onchange="toggleDivShowHide('#sellerDetailPartA')">
+									<label class="form-check-label fw-bold" for="sellerDetailPartACheckBox">Part A - Interview with Consumer</label>
+								</div>							
+								
+								<div class="d-none" id="sellerDetailPartA">
+									<!-- A1 - A3 -->
+									<div class="mb-3 p-3 border rounded">
+										<div class="row g-3">
+											<div class="col-md-4">
+												<label for="a1_consumer" class="form-label">A1 - Consumer No.</label>
+												<input type="text" class="form-control form-control-sm" id="a1_consumer" name="a1_consumer_no">
+											</div>
+											<div class="col-md-4">
+												<label for="a2_time" class="form-label">A2 - Time of Interview</label>
+												<input type="datetime-local" class="form-control form-control-sm" id="a2_time" name="a2_time_interview">
+											</div>
+											<div class="col-md-4">
+												<label for="a3_name" class="form-label">A3 - Name of Consumer</label>
+												<input type="text" class="form-control form-control-sm" id="a3_name" name="a3_name_consumer">
+											</div>									
 										</div>
-									</div>								
-									<div class="col-md-4">
-										<label for="a1_consumer" class="form-label">A1 - Consumer No.</label>
-										<input type="text" class="form-control form-control-sm" id="a1_consumer" name="a1_consumer_no">
-									</div>
-									<div class="col-md-4">
-										<label for="a2_time" class="form-label">A2 - Time of Interview</label>
-										<input type="datetime-local" class="form-control form-control-sm" id="a2_time" name="a2_time_interview">
-									</div>
-									<div class="col-md-4">
-										<label for="a3_name" class="form-label">A3 - Name of Consumer</label>
-										<input type="text" class="form-control form-control-sm" id="a3_name" name="a3_name_consumer">
-									</div>
-								</div>
+									</div>							
 
-								<!-- A4 Dynamic Table -->
-								<div class="mb-3 p-3 border rounded">
-									<div class="d-flex justify-content-between align-items-center mb-2">
-										<label class="form-label m-0 fw-bold">A4 - REE Purchased by Consumer</label>
-										<button type="button" class="btn btn-outline-primary btn-sm" onclick="addReePurchasedRow()">
-											<i class="fa-solid fa-plus me-1"></i> Add Item
-										</button>
+									<!-- A4 Dynamic Table -->
+									<div class="mb-3 p-3 border rounded">
+										<div class="d-flex justify-content-between align-items-center mb-2">
+											<label class="form-label m-0 fw-bold">A4 - REE Purchased by Consumer</label>
+											<button type="button" class="btn btn-outline-primary btn-sm" onclick="addReePurchasedRow()">
+												<i class="fa-solid fa-plus me-1"></i> Add Item
+											</button>
+										</div>
+										<div class="table-responsive">
+											<table class="table table-custom mb-0">
+												<thead>
+													<tr>
+														<th>Item No.</th>
+														<th>Type</th>
+														<th>Manufacture</th>
+														<th>Model</th>
+														<th>Size/Weight (m3/Kg)</th>
+														<th>New equipment</th>
+														<th>Energy label attached</th>
+														<th>Possession taken</th>
+														<th>To be delivered</th>
+														<th style="width:70px;">Delete</th>
+													</tr>
+												</thead>
+												<tbody id="reePurchasedBody"></tbody>
+											</table>
+										</div>
 									</div>
-									<div class="table-responsive">
-										<table class="table table-custom mb-0">
-											<thead>
-												<tr>
-													<th>Item No.</th>
-													<th>Type</th>
-													<th>Manufacture</th>
-													<th>Model</th>
-													<th>Size/Weight (m3/Kg)</th>
-													<th>New equipment</th>
-													<th>Energy label attached</th>
-													<th>Possession taken</th>
-													<th>To be delivered</th>
-													<th style="width:70px;">Delete</th>
-												</tr>
-											</thead>
-											<tbody id="reePurchasedBody"></tbody>
-										</table>
-									</div>
-								</div>
 
-								<!-- A7 Recycling labels -->
-								<div class="mb-3 p-3 border rounded">
-									<label class="form-label d-block fw-bold">A7 - Provision of appropriate recycling labels</label>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="a7_chk1"><label class="form-check-label" for="a7_chk1">Provision of appropriate recycling labels</label></div>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="a7_chk2"><label class="form-check-label" for="a7_chk2">Recycling label(s) to be provided by supplier when delivering the REE</label></div>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="a7_chk3"><label class="form-check-label" for="a7_chk3">Recycling label(s) not provided without any explanation</label></div>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="a7_chk4"><label class="form-check-label" for="a7_chk4">Wrong type(s) of recycling label(s) provided</label></div>
-								</div>
+									<!-- A7 Recycling labels -->
+									<div class="mb-3 p-3 border rounded">
+										<label class="form-label d-block fw-bold">A7 - Provision of appropriate recycling labels</label>
+										<div class="form-check"><input class="form-check-input" type="checkbox" id="a7_chk1"><label class="form-check-label" for="a7_chk1">Provision of appropriate recycling labels</label></div>
+										<div class="form-check"><input class="form-check-input" type="checkbox" id="a7_chk2"><label class="form-check-label" for="a7_chk2">Recycling label(s) to be provided by supplier when delivering the REE</label></div>
+										<div class="form-check"><input class="form-check-input" type="checkbox" id="a7_chk3"><label class="form-check-label" for="a7_chk3">Recycling label(s) not provided without any explanation</label></div>
+										<div class="form-check"><input class="form-check-input" type="checkbox" id="a7_chk4"><label class="form-check-label" for="a7_chk4">Wrong type(s) of recycling label(s) provided</label></div>
+									</div>
 
-								<!-- A5, A6, A8, A9, A10 -->
-								<div class="row g-3 mx-1 mb-2">
-									<div class="col-md-12">
-										<label class="form-label d-block">A5 - Notified in writing of the seller's obligations and the removal terms before entering into contract?</label>
-										<div class="d-flex gap-3">
-											<div class="form-check"><input class="form-check-input" type="radio" name="a5_opt" id="a5_y" value="Yes"><label class="form-check-label" for="a5_y">Yes</label></div>
-											<div class="form-check"><input class="form-check-input" type="radio" name="a5_opt" id="a5_n" value="No" checked><label class="form-check-label" for="a5_n">No</label></div>
+									<!-- A5, A6, A8, A9, A10 -->
+									<div class="row g-3 mx-1 mb-2">
+										<div class="col-md-12">
+											<label class="form-label d-block">A5 - Notified in writing of the seller's obligations and the removal terms before entering into contract?</label>
+											<div class="d-flex gap-3">
+												<div class="form-check"><input class="form-check-input" type="radio" name="a5_opt" id="a5_y" value="Yes"><label class="form-check-label" for="a5_y">Yes</label></div>
+												<div class="form-check"><input class="form-check-input" type="radio" name="a5_opt" id="a5_n" value="No" checked><label class="form-check-label" for="a5_n">No</label></div>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-12">
-										<label class="form-label d-block">A6 - Consumer requested free statutory removal service?</label>
-										<div class="d-flex gap-3">
-											<div class="form-check"><input class="form-check-input" type="radio" name="a6_opt" id="a6_y" value="Yes"><label class="form-check-label" for="a6_y">Yes</label></div>
-											<div class="form-check"><input class="form-check-input" type="radio" name="a6_opt" id="a6_n" value="No" checked><label class="form-check-label" for="a6_n">No</label></div>
+										<div class="col-md-12">
+											<label class="form-label d-block">A6 - Consumer requested free statutory removal service?</label>
+											<div class="d-flex gap-3">
+												<div class="form-check"><input class="form-check-input" type="radio" name="a6_opt" id="a6_y" value="Yes"><label class="form-check-label" for="a6_y">Yes</label></div>
+												<div class="form-check"><input class="form-check-input" type="radio" name="a6_opt" id="a6_n" value="No" checked><label class="form-check-label" for="a6_n">No</label></div>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-12">
-										<label class="form-label d-block">A8 - Provision of receipt - Yes/ No?</label>
-										<div class="d-flex gap-3">
-											<div class="form-check"><input class="form-check-input" type="radio" name="a8_opt" id="a8_y" value="Yes"><label class="form-check-label" for="a8_y">Yes</label></div>
-											<div class="form-check"><input class="form-check-input" type="radio" name="a8_opt" id="a8_n" value="No" checked><label class="form-check-label" for="a8_n">No</label></div>
+										<div class="col-md-12">
+											<label class="form-label d-block">A8 - Provision of receipt - Yes/ No?</label>
+											<div class="d-flex gap-3">
+												<div class="form-check"><input class="form-check-input" type="radio" name="a8_opt" id="a8_y" value="Yes"><label class="form-check-label" for="a8_y">Yes</label></div>
+												<div class="form-check"><input class="form-check-input" type="radio" name="a8_opt" id="a8_n" value="No" checked><label class="form-check-label" for="a8_n">No</label></div>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-12">
-										<label class="form-label d-block">A9 - Consumer Willing to provide the Receipt / removal terms / Recycling Label to EPD as evidence - Yes/ No?</label>
-										<div class="d-flex gap-3">
-											<div class="form-check"><input class="form-check-input" type="radio" name="a9_opt" id="a9_y" value="Yes"><label class="form-check-label" for="a9_y">Yes</label></div>
-											<div class="form-check"><input class="form-check-input" type="radio" name="a9_opt" id="a9_n" value="No" checked><label class="form-check-label" for="a9_n">No</label></div>
+										<div class="col-md-12">
+											<label class="form-label d-block">A9 - Consumer Willing to provide the Receipt / removal terms / Recycling Label to EPD as evidence - Yes/ No?</label>
+											<div class="d-flex gap-3">
+												<div class="form-check"><input class="form-check-input" type="radio" name="a9_opt" id="a9_y" value="Yes"><label class="form-check-label" for="a9_y">Yes</label></div>
+												<div class="form-check"><input class="form-check-input" type="radio" name="a9_opt" id="a9_n" value="No" checked><label class="form-check-label" for="a9_n">No</label></div>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-12">
-										<label class="form-label d-block">A10 - Consumer Willing to be prosecution witness - Yes/ No?</label>
-										<div class="d-flex gap-3">
-											<div class="form-check"><input class="form-check-input" type="radio" name="a10_opt" id="a10_y" value="Yes"><label class="form-check-label" for="a10_y">Yes</label></div>
-											<div class="form-check"><input class="form-check-input" type="radio" name="a10_opt" id="a10_n" value="No" checked><label class="form-check-label" for="a10_n">No</label></div>
+										<div class="col-md-12">
+											<label class="form-label d-block">A10 - Consumer Willing to be prosecution witness - Yes/ No?</label>
+											<div class="d-flex gap-3">
+												<div class="form-check"><input class="form-check-input" type="radio" name="a10_opt" id="a10_y" value="Yes"><label class="form-check-label" for="a10_y">Yes</label></div>
+												<div class="form-check"><input class="form-check-input" type="radio" name="a10_opt" id="a10_n" value="No" checked><label class="form-check-label" for="a10_n">No</label></div>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-12">
-										<label for="a11_telForConsumer" class="form-label">Contact Telephone No of Consumer</label>
-										<input type="text" class="form-control form-control-sm" id="a11_telForConsumer" name="a11_telForConsumer">
-									</div>
-									<div class="col-md-12">
-										<label for="a12_remarkForConsumer" class="form-label">Remark</label>
-										<input type="text" class="form-control form-control-sm" id="a12_remarkForConsumer" name="a12_remarkForConsumer">
-									</div>
+										<div class="col-md-12">
+											<label for="a11_telForConsumer" class="form-label">Contact Telephone No of Consumer</label>
+											<input type="text" class="form-control form-control-sm" id="a11_telForConsumer" name="a11_telForConsumer">
+										</div>
+										<div class="col-md-12">
+											<label for="a12_remarkForConsumer" class="form-label">Remark</label>
+											<input type="text" class="form-control form-control-sm" id="a12_remarkForConsumer" name="a12_remarkForConsumer">
+										</div>
+									</div>															
 								</div>
 							</div>
 
 							<!-- Part B -->
 							<div class="border rounded p-3 mb-3">
-								<h6 class="fw-bold mb-3 text-secondary">Part B - Enforcement Staff Posed as Consumer</h6>
-								<div class="row g-3 mx-1 mb-2 mb-3 mx-1">
-									<div class="col-md-12">
-										<div class="d-flex gap-3">
-											<div class="form-check"><input class="form-check-input" type="radio" name="enforcementStaffPosedAsConsumer_opt" id="enforcementStaffPosedAsConsumer_optYes" value="Yes"><label class="form-check-label" for="enforcementStaffPosedAsConsumer_optYes">Checked</label></div>
-											<div class="form-check"><input class="form-check-input" type="radio" name="enforcementStaffPosedAsConsumer_opt" id="enforcementStaffPosedAsConsumer_optNo" value="No"><label class="form-check-label" for="enforcementStaffPosedAsConsumer_optNo">Not Checked</label></div>
+							
+								<div class="form-check mb-2">
+									<input class="form-check-input" type="checkbox" id="sellerDetailPartBCheckBox" onchange="toggleDivShowHide('#sellerDetailPartB')">
+									<label class="form-check-label fw-bold" for="sellerDetailPartBCheckBox">Part B - Enforcement Staff Posed as Consumer</label>
+								</div>							
+								
+								<div class="d-none" id="sellerDetailPartB">
+									<!-- B1 - B2 -->
+									<div class="mb-3 p-3 border rounded">
+										<div class="row g-3">
+											<div class="col-md-6">
+												<label for="b1_time" class="form-label">B1 - Time (Start)</label>
+												<input type="datetime-local" class="form-control form-control-sm" id="b1_time">
+											</div>
+											<div class="col-md-6">
+												<label for="b2_time" class="form-label">B2 - Time (End)</label>
+												<input type="datetime-local" class="form-control form-control-sm" id="b2_time">
+											</div>										
 										</div>
-									</div>								
-									<div class="col-md-6">
-										<label for="b1_time" class="form-label">B1 - Time (Start)</label>
-										<input type="datetime-local" class="form-control form-control-sm" id="b1_time">
 									</div>
-									<div class="col-md-6">
-										<label for="b2_time" class="form-label">B2 - Time (End)</label>
-										<input type="datetime-local" class="form-control form-control-sm" id="b2_time">
-									</div>
-								</div>
 
-								<div class="mb-3">
-									<div class="d-flex justify-content-between align-items-center mb-2">
-										<label class="form-label m-0 fw-bold">B3 - Items Checked (Max 10)</label>
-										<button type="button" class="btn btn-outline-primary btn-sm" onclick="addB3Row()">
-											<i class="fa-solid fa-plus me-1"></i> Add Checked Item
-										</button>
-									</div>
-									<div class="table-responsive">
-										<table class="table table-custom mb-0">
-											<thead>
-												<tr>
-													<th>Item No</th>
-													<th>Type</th>
-													<th>Manufacture</th>
-													<th>Model</th>
-													<th>Size/Weight</th>
-													<th>New Eq?</th>
-													<th>Energy Label?</th>
-													<th>Action</th>
-													<th style="width:70px;">Delete</th>
-												</tr>
-											</thead>
-											<tbody id="b3Body"></tbody>
-										</table>
-									</div>
-								</div>
-
-								<div class="row g-3 mx-1 mb-2">
-									<div class="col-md-12">
-										<label class="form-label d-block">B4 - Notified in writing of the seller's obligations and the removal terms before entering into contract - Yes/ No?</label>
-										<div class="d-flex gap-3">
-											<div class="form-check"><input class="form-check-input" type="radio" name="b4_opt" id="b4_y" value="Yes"><label class="form-check-label" for="b4_y">Yes</label></div>
-											<div class="form-check"><input class="form-check-input" type="radio" name="b4_opt" id="b4_n" value="No" checked><label class="form-check-label" for="b4_n">No</label></div>
+									<!-- B3 -->
+									<div class="mb-3 p-3 border rounded">
+										<div class="d-flex justify-content-between align-items-center mb-2">
+											<label class="form-label m-0 fw-bold">B3 - Items Checked (Max 10)</label>
+											<button type="button" class="btn btn-outline-primary btn-sm" onclick="addB3Row()">
+												<i class="fa-solid fa-plus me-1"></i> Add Checked Item
+											</button>
 										</div>
+										<div class="table-responsive">
+											<table class="table table-custom mb-0">
+												<thead>
+													<tr>
+														<th>Item No</th>
+														<th>Type</th>
+														<th>Manufacture</th>
+														<th>Model</th>
+														<th>Size/Weight</th>
+														<th>New Eq?</th>
+														<th>Energy Label?</th>
+														<th>Action</th>
+														<th style="width:70px;">Delete</th>
+													</tr>
+												</thead>
+												<tbody id="b3Body"></tbody>
+											</table>
+										</div>									
 									</div>
-									<div class="col-md-12">
-										<label class="form-label d-block">B5 - Provision of free statutory removal service?</label>
-										<div class="d-flex gap-3">
-											<div class="form-check"><input class="form-check-input" type="radio" name="b5_opt" id="b5_y" value="Yes"><label class="form-check-label" for="b5_y">Yes</label></div>
-											<div class="form-check"><input class="form-check-input" type="radio" name="b5_opt" id="b5_n" value="No" checked><label class="form-check-label" for="b5_n">No</label></div>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<label for="b5_remark" class="form-label">Remark</label>
-										<input type="text" class="form-control form-control-sm" id="b5_remark" name="b5_remark">
-									</div>
+									
+									<!-- B4 - B5, Remark -->
+									<div class="mb-3 p-3 border rounded">
+										<div class="row g-3">
+											<div class="col-md-12">
+												<label class="form-label d-block">B4 - Notified in writing of the seller's obligations and the removal terms before entering into contract - Yes/ No?</label>
+												<div class="d-flex gap-3">
+													<div class="form-check"><input class="form-check-input" type="radio" name="b4_opt" id="b4_y" value="Yes"><label class="form-check-label" for="b4_y">Yes</label></div>
+													<div class="form-check"><input class="form-check-input" type="radio" name="b4_opt" id="b4_n" value="No" checked><label class="form-check-label" for="b4_n">No</label></div>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<label class="form-label d-block">B5 - Provision of free statutory removal service?</label>
+												<div class="d-flex gap-3">
+													<div class="form-check"><input class="form-check-input" type="radio" name="b5_opt" id="b5_y" value="Yes"><label class="form-check-label" for="b5_y">Yes</label></div>
+													<div class="form-check"><input class="form-check-input" type="radio" name="b5_opt" id="b5_n" value="No" checked><label class="form-check-label" for="b5_n">No</label></div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<label for="b5_remark" class="form-label">Remark</label>
+												<input type="text" class="form-control form-control-sm" id="b5_remark" name="b5_remark">
+											</div>
+										</div>									
+									</div>									
 								</div>
 							</div>
 
 							<!-- Part C -->
 							<div class="border rounded p-3 mb-3">
-								<h6 class="fw-bold mb-3 text-secondary">Part C - Interview with Pi/c of Shop</h6>
-								<div class="mb-3">
-									<label class="form-label d-block">Upon revealing identified of EPD enforcement staff</label>
-									<div class="d-flex gap-3">
-										<div class="form-check"><input class="form-check-input" type="radio" name="c_reveal" id="c_chk" value="Checked" checked><label class="form-check-label" for="c_chk">Checked</label></div>
-										<div class="form-check"><input class="form-check-input" type="radio" name="c_reveal" id="c_unchk" value="Unchecked"><label class="form-check-label" for="c_unchk">Unchecked</label></div>
+								<div class="form-check mb-2">
+									<input class="form-check-input" type="checkbox" id="sellerDetailPartCCheckBox" onchange="toggleDivShowHide('#sellerDetailPartC')">
+									<label class="form-check-label fw-bold" for="sellerDetailPartCCheckBox">Part C - Interview with Pi/c of Shop (Upon revealing identified of EPD enforcement staff)</label>
+								</div>							
+
+								<div class="d-none" id="sellerDetailPartC">
+								
+									<!-- C1 - C4 -->
+									<div class="mb-3 p-3 border rounded">
+										<div class="row g-3">
+											<div class="col-md-3"><label for="c1_time" class="form-label">C1 - Time (Start)</label><input type="datetime-local" class="form-control form-control-sm" id="c1_time"></div>
+											<div class="col-md-3"><label for="c2_time" class="form-label">C2 - Time (End)</label><input type="datetime-local" class="form-control form-control-sm" id="c2_time"></div>
+											<div class="col-md-3"><label for="c3_name" class="form-label">C3 - Name of Pi/C</label><input type="text" class="form-control form-control-sm" id="c3_name"></div>
+											<div class="col-md-3"><label for="c4_post" class="form-label">C4 - Post of Pi/C</label><input type="text" class="form-control form-control-sm" id="c4_post"></div>
+										</div>
+									</div>										
+
+									<!-- C5 Dynamic Table -->
+									<div class="mb-3 p-3 border rounded">
+										<div class="d-flex justify-content-between align-items-center mb-2">
+											<label class="form-label m-0 fw-bold">C5 - REE Displayed for Sell</label>
+											<button type="button" class="btn btn-outline-primary btn-sm" onclick="addC5Row()">
+												<i class="fa-solid fa-plus me-1"></i> Add Displayed REE
+											</button>
+										</div>
+										<div class="table-responsive">
+											<table class="table table-custom mb-0">
+												<thead>
+													<tr>
+														<th>Item No.</th>
+														<th>Type</th>
+														<th>Manufacture</th>
+														<th>Model</th>
+														<th>Size/Weight (m3/Kg)</th>
+														<th>Price ($)</th>
+														<th>New equipment</th>
+														<th>Energy label attached</th>
+														<th style="width:70px;">Delete</th>
+													</tr>
+												</thead>
+												<tbody id="c5Body"></tbody>
+											</table>
+										</div>
 									</div>
-								</div>
 
-								<div class="row g-3 mx-1 mb-2 mb-3 mx-1">
-									<div class="col-md-3"><label for="c1_time" class="form-label">C1 - Time (Start)</label><input type="datetime-local" class="form-control form-control-sm" id="c1_time"></div>
-									<div class="col-md-3"><label for="c2_time" class="form-label">C2 - Time (End)</label><input type="datetime-local" class="form-control form-control-sm" id="c2_time"></div>
-									<div class="col-md-3"><label for="c3_name" class="form-label">C3 - Name of Pi/C</label><input type="text" class="form-control form-control-sm" id="c3_name"></div>
-									<div class="col-md-3"><label for="c4_post" class="form-label">C4 - Post of Pi/C</label><input type="text" class="form-control form-control-sm" id="c4_post"></div>
-								</div>
-
-								<!-- C5 Dynamic Table -->
-								<div class="mb-3">
-									<div class="d-flex justify-content-between align-items-center mb-2">
-										<label class="form-label m-0 fw-bold">C5 - REE Displayed for Sell</label>
-										<button type="button" class="btn btn-outline-primary btn-sm" onclick="addC5Row()">
-											<i class="fa-solid fa-plus me-1"></i> Add Displayed REE
-										</button>
+									<!-- C8 Recycling labels -->
+									<div class="mb-3 p-3 border rounded">
+										<label class="form-label d-block fw-bold">C8 - Provision of appropriate recycling labels (Readonly)</label>
+										<div class="form-check"><input class="form-check-input" type="checkbox" id="c8_chk1" disabled><label class="form-check-label" for="c8_chk1">Provision of appropriate recycling labels</label></div>
+										<div class="form-check"><input class="form-check-input" type="checkbox" id="c8_chk2" disabled><label class="form-check-label" for="c8_chk2">Recycling label(s) to be provided by supplier when delivering the REE</label></div>
+										<div class="form-check"><input class="form-check-input" type="checkbox" id="c8_chk3" disabled><label class="form-check-label" for="c8_chk3">Recycling label(s) not provided without any explanation</label></div>
+										<div class="form-check"><input class="form-check-input" type="checkbox" id="c8_chk4" disabled><label class="form-check-label" for="c8_chk4">Wrong type(s) of recycling label(s) provided</label></div>
 									</div>
-									<div class="table-responsive">
-										<table class="table table-custom mb-0">
-											<thead>
-												<tr>
-													<th>Item No.</th>
-													<th>Type</th>
-													<th>Manufacture</th>
-													<th>Model</th>
-													<th>Size/Weight (m3/Kg)</th>
-													<th>Price ($)</th>
-													<th>New equipment</th>
-													<th>Energy label attached</th>
-													<th style="width:70px;">Delete</th>
-												</tr>
-											</thead>
-											<tbody id="c5Body"></tbody>
-										</table>
-									</div>
-								</div>
 
-								<!-- C8 Recycling labels -->
-								<div class="mb-3 p-3 border rounded">
-									<label class="form-label d-block fw-bold">C8 - Provision of appropriate recycling labels (Readonly)</label>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="c8_chk2" disabled><label class="form-check-label" for="c8_chk2">Recycling label(s) to be provided by supplier when delivering the REE</label></div>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="c8_chk3" disabled><label class="form-check-label" for="c8_chk3">Recycling label(s) not provided without any explanation</label></div>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="c8_chk4" disabled><label class="form-check-label" for="c8_chk4">Wrong type(s) of recycling label(s) provided</label></div>
-								</div>
-
-								<div class="row g-3 mx-1 mb-2">
-									<div class="col-md-12"><label class="form-label d-block">C6 - How the seller's obligation and removal terms are provided to consumers before entering into contract [Refer TREE-9]</label><div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" name="c6_opt" id="c6_y" value="Yes"><label class="form-check-label" for="c6_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" name="c6_opt" id="c6_n" value="No" checked><label class="form-check-label" for="c6_n">No</label></div></div></div>
-									<div class="col-md-12"><label class="form-label d-block">C7 - Provision of free statutory removal service of the existing REE of item(s)</label><div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" name="c7_opt" id="c7_y" value="Yes"><label class="form-check-label" for="c7_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" name="c7_opt" id="c7_n" value="No" checked><label class="form-check-label" for="c7_n">No</label></div></div></div>
-									<!--
-										<div class="col-md-12"><label class="form-label d-block">C8. Recycling Labels are provided to consumer upon sell of REE - Yes/ No? (Readony)</label><div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" name="c8_opt_readonly" id="c8_ro_y" value="Yes"><label class="form-check-label" for="c8_ro_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" name="c8_opt_readonly" id="c8_ro_n" value="No" checked><label class="form-check-label" for="c8_ro_n">No</label></div></div></div>
-									-->
-									<div class="col-md-12"><label class="form-label d-block">C9 - Provision of receipt</label><div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" name="c9_opt" id="c9_y" value="Yes"><label class="form-check-label" for="c9_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" name="c9_opt" id="c9_n" value="No" checked><label class="form-check-label" for="c9_n">No</label></div></div></div>
-									<div class="col-md-12"><label class="form-label d-block">C10 - Provision of removal service record</label><div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" name="c10_opt" id="c10_y" value="Yes"><label class="form-check-label" for="c10_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" name="c10_opt" id="c10_n" value="No" checked><label class="form-check-label" for="c10_n">No</label></div></div></div>
-								</div>
+									<div class="mb-3 p-3 border rounded">
+										<div class="row g-3">
+											<div class="col-md-12"><label class="form-label d-block">C6 - How the seller's obligation and removal terms are provided to consumers before entering into contract [Refer TREE-9]</label><div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" name="c6_opt" id="c6_y" value="Yes"><label class="form-check-label" for="c6_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" name="c6_opt" id="c6_n" value="No" checked><label class="form-check-label" for="c6_n">No</label></div></div></div>
+											<div class="col-md-12"><label class="form-label d-block">C7 - Provision of free statutory removal service of the existing REE of item(s)</label><div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" name="c7_opt" id="c7_y" value="Yes"><label class="form-check-label" for="c7_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" name="c7_opt" id="c7_n" value="No" checked><label class="form-check-label" for="c7_n">No</label></div></div></div>
+											<!--
+												<div class="col-md-12"><label class="form-label d-block">C8. Recycling Labels are provided to consumer upon sell of REE - Yes/ No? (Readony)</label><div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" name="c8_opt_readonly" id="c8_ro_y" value="Yes"><label class="form-check-label" for="c8_ro_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" name="c8_opt_readonly" id="c8_ro_n" value="No" checked><label class="form-check-label" for="c8_ro_n">No</label></div></div></div>
+											-->
+											<div class="col-md-12"><label class="form-label d-block">C9 - Provision of receipt</label><div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" name="c9_opt" id="c9_y" value="Yes"><label class="form-check-label" for="c9_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" name="c9_opt" id="c9_n" value="No" checked><label class="form-check-label" for="c9_n">No</label></div></div></div>
+											<div class="col-md-12"><label class="form-label d-block">C10 - Provision of removal service record</label><div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" name="c10_opt" id="c10_y" value="Yes"><label class="form-check-label" for="c10_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" name="c10_opt" id="c10_n" value="No" checked><label class="form-check-label" for="c10_n">No</label></div></div></div>
+										</div>
+									</div>								
+								</div>						
 							</div>
 
 							<!-- Part D -->
 							<div class="border rounded p-3">
-								<h6 class="fw-bold mb-3 text-secondary">Part D - Compliance check</h6>
+							
+								<div class="form-check mb-2">
+									<input class="form-check-input" type="checkbox" id="sellerDetailPartDCheckBox" onchange="toggleDivShowHide('#sellerDetailPartD')">
+									<label class="form-check-label fw-bold" for="sellerDetailPartDCheckBox">Part D - Compliance check</label>
+								</div>		
 								
-								<div class="mb-3">
-									<label class="form-label d-block">Have a removal service plan endorsed by EPD</label>
-									<div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" id="pd1_y" name="pd1_"><label class="form-check-label" for="pd1_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd1_n" name="pd1_"><label class="form-check-label" for="pd1_n">No</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd1_na" name="pd1_"><label class="form-check-label" for="pd1_na">N/A</label></div></div>
+								<div class="d-none" id="sellerDetailPartD">
+									<div class="mb-3 p-3 border rounded">
+										<div class="mb-3">
+											<label class="form-label d-block">Have a removal service plan endorsed by EPD</label>
+											<div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" id="pd1_y" name="pd1_"><label class="form-check-label" for="pd1_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd1_n" name="pd1_"><label class="form-check-label" for="pd1_n">No</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd1_na" name="pd1_"><label class="form-check-label" for="pd1_na">N/A</label></div></div>
+										</div>
+										<div class="mb-3">
+											<label class="form-label d-block">Notify consumers in writing the statutory removal service obligation and terms before entering into contract</label>
+											<div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" id="pd2_y" name="pd2_"><label class="form-check-label" for="pd2_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd2_n" name="pd2_"><label class="form-check-label" for="pd2_n">No</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd2_na" name="pd2_"><label class="form-check-label" for="pd2_na">N/A</label></div></div>
+										</div>
+										<div class="mb-3">
+											<label class="form-label d-block">Arrange statutary removal service as requested by consumers</label>
+											<div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" id="pd3_y" name="pd3_"><label class="form-check-label" for="pd3_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd3_n" name="pd3_"><label class="form-check-label" for="pd3_n">No</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd3_na" name="pd3_"><label class="form-check-label" for="pd3_na">N/A</label></div></div>
+										</div>
+										<div class="mb-3">
+											<label class="form-label d-block">Provided receipt with prescribe wording in both the English and the Chinese languages to consumers</label>
+											<div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" id="pd4_y" name="pd4_"><label class="form-check-label" for="pd4_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd4_n" name="pd4_"><label class="form-check-label" for="pd4_n">No</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd4_na" name="pd4_"><label class="form-check-label" for="pd4_na">N/A</label></div></div>
+										</div>
+										<div class="mb-3">
+											<label class="form-label d-block">Keep records properly for one year</label>
+											<div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" id="pd5_y" name="pd5_"><label class="form-check-label" for="pd5_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd5_n" name="pd5_"><label class="form-check-label" for="pd5_n">No</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd5_na" name="pd5_"><label class="form-check-label" for="pd5_na">N/A</label></div></div>
+										</div>									
+									</div>
 								</div>
-								<div class="mb-3">
-									<label class="form-label d-block">Notify consumers in writing the statutory removal service obligation and terms before entering into contract</label>
-									<div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" id="pd2_y" name="pd2_"><label class="form-check-label" for="pd2_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd2_n" name="pd2_"><label class="form-check-label" for="pd2_n">No</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd2_na" name="pd2_"><label class="form-check-label" for="pd2_na">N/A</label></div></div>
-								</div>
-								<div class="mb-3">
-									<label class="form-label d-block">Arrange statutary removal service as requested by consumers</label>
-									<div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" id="pd3_y" name="pd3_"><label class="form-check-label" for="pd3_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd3_n" name="pd3_"><label class="form-check-label" for="pd3_n">No</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd3_na" name="pd3_"><label class="form-check-label" for="pd3_na">N/A</label></div></div>
-								</div>
-								<div class="mb-3">
-									<label class="form-label d-block">Provided receipt with prescribe wording in both the English and the Chinese languages to consumers</label>
-									<div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" id="pd4_y" name="pd4_"><label class="form-check-label" for="pd4_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd4_n" name="pd4_"><label class="form-check-label" for="pd4_n">No</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd4_na" name="pd4_"><label class="form-check-label" for="pd4_na">N/A</label></div></div>
-								</div>
-								<div class="mb-3">
-									<label class="form-label d-block">Keep records properly for one year</label>
-									<div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="radio" id="pd5_y" name="pd5_"><label class="form-check-label" for="pd5_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd5_n" name="pd5_"><label class="form-check-label" for="pd5_n">No</label></div><div class="form-check"><input class="form-check-input" type="radio" id="pd5_na" name="pd5_"><label class="form-check-label" for="pd5_na">N/A</label></div></div>
-								</div>
+
 							</div>						
 						</div>
                     </div>
@@ -1147,56 +1174,85 @@
                     <div class="sub-section d-none bg-collector-border" id="collectorAssessmentDiv">
                         <div class="collapsableDiv sub-section-title bg-collector" onclick="toggleDivShowHide('#collectorAssessmentDataDiv')"><i class="fa-solid fa-recycle me-2"></i>Collector Assessment</div>
 						<div id="collectorAssessmentDataDiv" class="py-2 px-3">
+							
 							<!-- Part A -->
 							<div class="border rounded p-3 mb-3">
 								<div class="form-check mb-2">
-									<input class="form-check-input" type="checkbox" id="col_part_a_enable">
-									<label class="form-check-label fw-bold" for="col_part_a_enable">Part A - Records of e-waste removal services (Enable)</label>
+									<input class="form-check-input" type="checkbox" id="col_part_a_enable" onchange="toggleDivShowHide('#collectorDetailPartA')">
+									<label class="form-check-label fw-bold" for="col_part_a_enable">Part A - Collector Information</label>
 								</div>
-								<div class="ms-3">
+								<div class="d-none ms-3" id="collectorDetailPartA">
 									<div class="mb-3">
-										<label class="form-label d-block">Record of e-waste collected from customers?</label>
-										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_a1" id="ca1_y" value="Yes" onclick="toggleReasonInput('ca1_reason', false)"><label class="form-check-label" for="ca1_y">Yes</label></div>
-										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_a1" id="ca1_u" value="Uncertain" onclick="toggleReasonInput('ca1_reason', false)"><label class="form-check-label" for="ca1_u">Uncertain</label></div>
-										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_a1" id="ca1_n" value="No" onclick="toggleReasonInput('ca1_reason', true)"><label class="form-check-label" for="ca1_n">No (reason of record not available)</label></div>
-										<div id="ca1_reason" class="conditional-text-field d-none"><input type="text" class="form-control form-control-sm" placeholder="Reason of record not available"></div>
+										<label class="form-label d-block">Counter-checking of Collector's General Information with the Collector Summary Report in Annex 1 (Details TBC...)</label>										
 									</div>
-									<div class="mb-2">
-										<label class="form-label d-block">Keeping the record for 12 months?</label>
-										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_a2" id="ca2_y" value="Yes" onclick="toggleReasonInput('ca2_reason', false)"><label class="form-check-label" for="ca2_y">Yes</label></div>
-										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_a2" id="ca2_u" value="Uncertain" onclick="toggleReasonInput('ca2_reason', false)"><label class="form-check-label" for="ca2_u">Uncertain</label></div>
-										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_a2" id="ca2_n" value="No" onclick="toggleReasonInput('ca2_reason', true)"><label class="form-check-label" for="ca2_n">No (reason of record not available)</label></div>
-										<div id="ca2_reason" class="conditional-text-field d-none"><input type="text" class="form-control form-control-sm" placeholder="Reason of record not available"></div>
-									</div>
-								</div>
+								</div>								
 							</div>
-
+							
 							<!-- Part B -->
 							<div class="border rounded p-3 mb-3">
 								<div class="form-check mb-2">
-									<input class="form-check-input" type="checkbox" id="col_part_b_enable">
-									<label class="form-check-label fw-bold" for="col_part_b_enable">Part B - Transfer arrangement of collected e-waste (Enable)</label>
+									<input class="form-check-input" type="checkbox" id="col_part_b_enable" onchange="toggleDivShowHide('#collectorDetailPartB')">
+									<label class="form-check-label fw-bold" for="col_part_b_enable">Part B - Records of e-waste removal services</label>
 								</div>
-								<div class="ms-3">
-									<label class="form-label d-block">E-waste transfer arrangement?</label>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="cb1"><label class="form-check-label" for="cb1">Transfer to recycler directly, go to Part D</label></div>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="cb2"><label class="form-check-label" for="cb2">Transfer to recycler without permit/license</label></div>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="cb3"><label class="form-check-label" for="cb3">Transfer to recycler with valid permit/license</label></div>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="cb4"><label class="form-check-label" for="cb4">Transfer to temporary storage area</label></div>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="cb5"><label class="form-check-label" for="cb5">Uncertain</label></div>
-									<div class="form-check"><input class="form-check-input" type="checkbox" id="cb6"><label class="form-check-label" for="cb6">N/A</label></div>
+								<div class="d-none ms-3" id="collectorDetailPartB">
+									<div class="mb-3">
+										<label class="form-label d-block">B1 - Record of e-waste collected from customers</label>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_a1" id="ca1_y" value="Yes" onclick="toggleReasonInput('ca1_reason', false)"><label class="form-check-label" for="ca1_y">Yes</label></div>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_a1" id="ca1_n" value="No" onclick="toggleReasonInput('ca1_reason', true)"><label class="form-check-label" for="ca1_n">No</label></div>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_a1" id="ca1_u" value="Uncertain" onclick="toggleReasonInput('ca1_reason', false)"><label class="form-check-label" for="ca1_u">Uncertain</label></div>										
+										<div id="ca1_reason" class="conditional-text-field d-none"><input type="text" class="form-control form-control-sm" placeholder="Reason of record not available"></div>
+									</div>
+									<div class="mb-2">
+										<label class="form-label d-block">B2 - Keeping the record for 12 months</label>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_a2" id="ca2_y" value="Yes" onclick="toggleReasonInput('cb2_date', true); toggleReasonInput('ca2_reason', false)"><label class="form-check-label" for="ca2_y">Yes</label></div>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_a2" id="ca2_n" value="No" onclick="toggleReasonInput('cb2_date', false); toggleReasonInput('ca2_reason', true)"><label class="form-check-label" for="ca2_n">No</label></div>										
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_a2" id="ca2_u" value="Uncertain" onclick="toggleReasonInput('cb2_date', false); toggleReasonInput('ca2_reason', false)"><label class="form-check-label" for="ca2_u">Uncertain</label></div>
+										<div id="ca2_reason" class="conditional-text-field d-none"><input type="text" class="form-control form-control-sm" placeholder="Reason of record not available"></div>
+										<div id="cb2_date" class="conditional-text-field d-none"><label class="form-label d-block">Date of the earliest record</label><input type="date" class="form-control form-control-sm"></div>
+									</div>
 								</div>
 							</div>
 
 							<!-- Part C -->
 							<div class="border rounded p-3 mb-3">
 								<div class="form-check mb-2">
-									<input class="form-check-input" type="checkbox" id="col_part_c_enable">
-									<label class="form-check-label fw-bold" for="col_part_c_enable">Part C - Records of e-waste accepted by recycler (Enable)</label>
+									<input class="form-check-input" type="checkbox" id="col_part_c_enable" onchange="toggleDivShowHide('#collectorDetailPartC')">
+									<label class="form-check-label fw-bold" for="col_part_c_enable">Part C - Transfer arrangement of collected e-waste</label>
 								</div>
-								<div class="ms-3">
+								<div class="d-none ms-3" id="collectorDetailPartC">
 									<div class="mb-3">
-										<label class="form-label d-block">Channels to contact recycler on delivery</label>
+										<label class="form-label d-block">C1 - E-waste transfer arrangement</label>
+										<div class="form-check"><input class="form-check-input" type="checkbox" id="cb1"><label class="form-check-label" for="cb1">Transfer to recycler directly, go to Part D</label></div>
+										<div class="form-check"><input class="form-check-input" type="checkbox" id="cb4"><label class="form-check-label" for="cb4">Transfer to temporary storage area</label></div>
+										<div class="form-check"><input class="form-check-input" type="checkbox" id="cb5"><label class="form-check-label" for="cb5">Uncertain</label></div>
+									</div>
+									<div class="mb-3">
+										<label class="form-label d-block">C2 - Record of e-waste transferred to temporary storage area (if any)</label>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_c2" id="col_c2_y" value="Yes" onclick="toggleReasonInput('cc2_reason', false)"><label class="form-check-label" for="col_c2_y">Yes</label></div>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_c2" id="col_c2_n" value="No" onclick="toggleReasonInput('cc2_reason', true)"><label class="form-check-label" for="col_c2_n">No</label></div>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_c2" id="col_c2_u" value="Uncertain" onclick="toggleReasonInput('cc2_reason', false)"><label class="form-check-label" for="col_c2_u">Uncertain</label></div>										
+										<div id="cc2_reason" class="conditional-text-field d-none"><input type="text" class="form-control form-control-sm" placeholder="Reason of record not available"></div>
+									</div>
+									<div class="mb-2">
+										<label class="form-label d-block">C3 - Keeping the record for 12 months</label>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_c3" id="col_c3_y" value="Yes" onclick="toggleReasonInput('cc3_date', true); toggleReasonInput('cc3_reason', false)"><label class="form-check-label" for="col_c3_y">Yes</label></div>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_c3" id="col_c3_n" value="No" onclick="toggleReasonInput('cc3_date', false); toggleReasonInput('cc3_reason', true)"><label class="form-check-label" for="col_c3_n">No</label></div>										
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_c3" id="col_c3_u" value="Uncertain" onclick="toggleReasonInput('cc3_date', false); toggleReasonInput('cc3_reason', false)"><label class="form-check-label" for="col_c3_u">Uncertain</label></div>
+										<div id="cc3_reason" class="conditional-text-field d-none"><input type="text" class="form-control form-control-sm" placeholder="Reason of record not available"></div>
+										<div id="cc3_date" class="conditional-text-field d-none"><label class="form-label d-block">Date of the earliest record</label><input type="date" class="form-control form-control-sm"></div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Part D -->
+							<div class="border rounded p-3 mb-3">
+								<div class="form-check mb-2">
+									<input class="form-check-input" type="checkbox" id="col_part_d_enable" onchange="toggleDivShowHide('#collectorDetailPartD')">
+									<label class="form-check-label fw-bold" for="col_part_d_enable">Part D - Records of e-waste accepted by recycler</label>
+								</div>
+								<div class="d-none ms-3" id="collectorDetailPartD">
+									<div class="mb-3">
+										<label class="form-label d-block">D1 - Channels to contact recycler on delivery of collected e-waste</label>
 										<div class="d-flex flex-wrap gap-3">
 											<div class="form-check"><input class="form-check-input" type="checkbox" id="cc1"><label class="form-check-label" for="cc1">Web Portal</label></div>
 											<div class="form-check"><input class="form-check-input" type="checkbox" id="cc2"><label class="form-check-label" for="cc2">Telephone</label></div>
@@ -1210,19 +1266,20 @@
 									</div>
 
 									<div class="mb-3">
-										<label class="form-label d-block">Records of e-waste accepted by recycler?</label>
-										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_c2" id="cc2_y" value="Yes" onclick="toggleReasonInput('cc2_reason', false)"><label class="form-check-label" for="cc2_y">Yes</label></div>
-										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_c2" id="cc2_u" value="Uncertain" onclick="toggleReasonInput('cc2_reason', false)"><label class="form-check-label" for="cc2_u">Uncertain</label></div>
-										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_c2" id="cc2_n" value="No" onclick="toggleReasonInput('cc2_reason', true)"><label class="form-check-label" for="cc2_n">No (reason of record not available)</label></div>
-										<div id="cc2_reason" class="conditional-text-field d-none"><input type="text" class="form-control form-control-sm" placeholder="Reason of record not available"></div>
+										<label class="form-label d-block">D2 - Records of e-waste accepted by recycler</label>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_d2" id="col_d2_y" value="Yes" onclick="toggleReasonInput('cd2_reason', false)"><label class="form-check-label" for="col_d2_y">Yes</label></div>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_d2" id="col_d2_n" value="No" onclick="toggleReasonInput('cd2_reason', true)"><label class="form-check-label" for="col_d2_n">No</label></div>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_d2" id="col_d2_u" value="Uncertain" onclick="toggleReasonInput('cd2_reason', false)"><label class="form-check-label" for="col_d2_u">Uncertain</label></div>										
+										<div id="cd2_reason" class="conditional-text-field d-none"><input type="text" class="form-control form-control-sm" placeholder="Reason of record not available"></div>
 									</div>
 
 									<div class="mb-2">
-										<label class="form-label d-block">Keeping the record for 12 months?</label>
-										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_c3" id="cc3_y" value="Yes" onclick="toggleReasonInput('cc3_reason', false)"><label class="form-check-label" for="cc3_y">Yes</label></div>
-										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_c3" id="cc3_u" value="Uncertain" onclick="toggleReasonInput('cc3_reason', false)"><label class="form-check-label" for="cc3_u">Uncertain</label></div>
-										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_c3" id="cc3_n" value="No" onclick="toggleReasonInput('cc3_reason', true)"><label class="form-check-label" for="cc3_n">No (reason of record not available)</label></div>
-										<div id="cc3_reason" class="conditional-text-field d-none"><input type="text" class="form-control form-control-sm" placeholder="Reason of record not available"></div>
+										<label class="form-label d-block">D3 - Keeping the record for 12 months</label>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_d3" id="col_d3_y" value="Yes" onclick="toggleReasonInput('cd3_date', true); toggleReasonInput('cd3_reason', false)"><label class="form-check-label" for="col_d3_y">Yes</label></div>
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_d3" id="col_d3_n" value="No" onclick="toggleReasonInput('cd3_date', false); toggleReasonInput('cd3_reason', true)"><label class="form-check-label" for="col_d3_n">No</label></div>										
+										<div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="col_d3" id="col_d3_u" value="Uncertain" onclick="toggleReasonInput('cd3_date', false); toggleReasonInput('cd3_reason', false)"><label class="form-check-label" for="col_d3_u">Uncertain</label></div>
+										<div id="cd3_reason" class="conditional-text-field d-none"><input type="text" class="form-control form-control-sm" placeholder="Reason of record not available"></div>
+										<div id="cd3_date" class="conditional-text-field d-none"><label class="form-label d-block">Date of the earliest record</label><input type="date" class="form-control form-control-sm"></div>
 									</div>
 								</div>
 							</div>
@@ -1230,16 +1287,16 @@
 							<!-- Part D -->
 							<div class="border rounded p-3">
 								<div class="form-check mb-2">
-									<input class="form-check-input" type="checkbox" id="col_part_d_enable">
-									<label class="form-check-label fw-bold" for="col_part_d_enable">Part D - Compliance check (Enable)</label>
+									<input class="form-check-input" type="checkbox" id="col_part_e_enable" onchange="toggleDivShowHide('#collectorDetailPartE')">
+									<label class="form-check-label fw-bold" for="col_part_e_enable">Part E - Compliance check</label>
 								</div>
-								<div class="ms-3">
+								<div class="d-none ms-3" id="collectorDetailPartE">
 									<div class="mb-3">
-										<label class="form-label d-block">Transfer REEs to a recycler specified in the plan within a reasonable time</label>
+										<label class="form-label d-block">E1 - Transfer REEs to a recycler specified in the plan within a reasonable time</label>
 										<div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="checkbox" id="cpd1_y" name="cpd1_"><label class="form-check-label" for="cpd1_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="checkbox" id="cpd1_n" name="cpd1_"><label class="form-check-label" for="cpd1_n">No</label></div><div class="form-check"><input class="form-check-input" type="checkbox" id="cpd1_na" name="cpd1_"><label class="form-check-label" for="cpd1_na">N/A</label></div></div>
 									</div>
 									<div class="mb-2">
-										<label class="form-label d-block">Accept by the recycler</label>
+										<label class="form-label d-block">E2 - Accept by the recycler</label>
 										<div class="d-flex gap-3"><div class="form-check"><input class="form-check-input" type="checkbox" id="cpd2_y" name="cpd2_"><label class="form-check-label" for="cpd2_y">Yes</label></div><div class="form-check"><input class="form-check-input" type="checkbox" id="cpd2_n" name="cpd2_"><label class="form-check-label" for="cpd2_n">No</label></div><div class="form-check"><input class="form-check-input" type="checkbox" id="cpd2_na" name="cpd2_"><label class="form-check-label" for="cpd2_na">N/A</label></div></div>
 									</div>
 								</div>
@@ -1255,23 +1312,34 @@
 
                         <div class="row py-2 px-3">
                             <div class="col-md-6">
-                                <label class="form-label d-block">Action Issued</label>
-                                <div class="d-flex gap-3">
-                                    <div class="form-check"><input class="form-check-input" type="radio" name="action_issued" id="act_yes" value="Yes"><label class="form-check-label" for="act_yes">Yes</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="radio" name="action_issued" id="act_no" value="No" checked><label class="form-check-label" for="act_no">No</label></div>
-                                </div>
+								<div class="col-md-12">
+									<label class="form-label d-block">Non-compliance of PERO was found</label>
+									<div class="d-flex gap-3">
+										<div class="form-check"><input class="form-check-input" type="radio" name="nonComplianceFound" id="nonComplianceFound_yes" value="Yes"><label class="form-check-label" for="nonComplianceFound_yes">Yes</label></div>
+										<div class="form-check"><input class="form-check-input" type="radio" name="nonComplianceFound" id="nonComplianceFound_no" value="No" checked><label class="form-check-label" for="nonComplianceFound_no">No</label></div>
+									</div>								
+								</div>
+								<div class="col-md-12">
+									<label class="form-label d-block">Action Issued</label>
+									<div class="d-flex gap-3">
+										<div class="form-check"><input class="form-check-input" type="radio" name="action_issued" id="act_yes" value="Yes" onclick="toggleDivShowHide('#enforcementAction', 'show')"><label class="form-check-label" for="act_yes">Yes</label></div>
+										<div class="form-check"><input class="form-check-input" type="radio" name="action_issued" id="act_no" value="No" onclick="toggleDivShowHide('#enforcementAction', 'hide')" checked><label class="form-check-label" for="act_no">No</label></div>
+									</div>								
+								</div>
                             </div>
-                            <div class="col-md-12 d-none" id="enforcementActionForSupplier">
-                                <label class="form-label d-block">Enforcement Action(s) (For Supplier)</label>
-                                <div class="d-flex flex-wrap gap-3">
-                                    <div class="form-check"><input class="form-check-input" type="radio" name="enf_action" id="enf_nil" value="Nil" onclick="toggleReasonInput('other_enf_txt', false)"><label class="form-check-label" for="enf_nil">Advice</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="radio" name="enf_action" id="enf_yellow" value="Yellow Form" onclick="toggleReasonInput('other_enf_txt', false)"><label class="form-check-label" for="enf_yellow">Yellow Form</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="radio" name="enf_action" id="enf_pink" value="Pink Form" onclick="toggleReasonInput('other_enf_txt', false)"><label class="form-check-label" for="enf_pink">Pink Form</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="radio" name="enf_action" id="enf_verbalAdvice" value="Verbal Advice" onclick="toggleReasonInput('other_enf_txt', true)"><label class="form-check-label" for="enf_verbalAdvice">Verbal Advice</label></div>
-                                </div>
-                                <div id="other_enf_txt" class="conditional-text-field d-none"><input type="text" class="form-control form-control-sm" placeholder="Specify the detail in verbal advice"></div>
-                            </div>							
-                            <div class="col-md-12 d-none" id="enforcementActionForOther">
+                            <div class="col-md-6 d-none" id="enforcementAction">
+								<div class="col-md-12">
+									<label class="form-label d-block">Enforcement Action(s)</label>
+									<div class="d-flex flex-wrap gap-3">
+										<div class="form-check"><input class="form-check-input" type="radio" name="enf_action" id="enf_nil" value="Nil" onclick="toggleReasonInput('other_enf_txt', false)"><label class="form-check-label" for="enf_nil">Advisory Letter</label></div>
+										<div class="form-check"><input class="form-check-input" type="radio" name="enf_action" id="enf_yellow" value="Yellow Form" onclick="toggleReasonInput('other_enf_txt', false)"><label class="form-check-label" for="enf_yellow">Yellow Form</label></div>
+										<div class="form-check"><input class="form-check-input" type="radio" name="enf_action" id="enf_pink" value="Pink Form" onclick="toggleReasonInput('other_enf_txt', false)"><label class="form-check-label" for="enf_pink">Pink Form</label></div>
+										<div class="form-check"><input class="form-check-input" type="radio" name="enf_action" id="enf_verbalAdvice" value="Verbal Advice / Remark" onclick="toggleReasonInput('other_enf_txt', true)"><label class="form-check-label" for="enf_verbalAdvice">Verbal Advice / Remark</label></div>
+									</div>
+									<div id="other_enf_txt" class="d-none"><textarea class="form-control" id="remarkForActions" rows="3" placeholder="Specify the detail in verbal advice / Remark retrieved from IEES"></textarea></div>					
+								</div>
+							</div>							
+<!-- 	                            <div class="col-md-12 d-none" id="enforcementActionForOther">
                                 <label class="form-label d-block">Enforcement Action(s) (For Seller and others)</label>
                                 <div class="d-flex flex-wrap gap-3">
 								    <div class="form-check"><input class="form-check-input" type="radio" name="enf_action" id="enf_nonComplianceFound" value="NonComplianceFound"><label class="form-check-label" for="enf_nonComplianceFound">Non-compliance of PERO was found</label></div>
@@ -1279,9 +1347,9 @@
                                     <div class="form-check"><input class="form-check-input" type="radio" name="enf_action" id="enf_yellow" value="Yellow Form"><label class="form-check-label" for="enf_yellow">Yellow Form</label></div>
                                     <div class="form-check"><input class="form-check-input" type="radio" name="enf_action" id="enf_pink" value="Pink Form"><label class="form-check-label" for="enf_pink">Pink Form</label></div>
                                 </div>
-								<label for="remarkForActions" class="form-label">Remark</label>
+							<label for="remarkForActions" class="form-label">Remark</label>
 								<textarea class="form-control" id="remarkForActions" rows="3"></textarea>
-							</div>
+							</div> -->
                         </div>
 
                         <!-- Rich Text Fields (Quill JS) -->
@@ -1302,25 +1370,47 @@
                             <div id="editor-remark"></div>
                             <input type="hidden" name="remark_html" id="remark_html">
                         </div>
-
-                        <!-- Document Attachment -->
+						
+                        <!-- Photo Attachment -->
                         <div class="mb-3 pt-2 px-3">
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <label class="form-label m-0 fw-bold"><i class="fa-solid fa-paperclip me-2"></i>Document Attachment</label>
-                                <button type="button" class="btn btn-outline-primary btn-sm" onclick="addPhotoRow()">
-                                    <i class="fa-solid fa-upload me-1"></i> Add Attachment
-                                </button>
+                                <label class="form-label m-0 fw-bold"><i class="fa-solid fa-image me-2"></i>Photo Attachment</label>
                             </div>
                             <table class="table table-custom bg-white">
                                 <thead>
                                     <tr>
-                                        <th>Files (Allow multiple selections)</th>
-                                        <th>Description</th>
-                                        <th style="width: 80px;">Delete</th>
+                                        <th style='width: 1rem;'>No.</th>
+                                        <th style='width: 15rem;'>Photo Title</th>
+										<th style='width: 15rem;'>Remark</th>
+										<th style='width: 15rem;'>Preview</th>
+                                        <th style="width: 3rem;">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody id="photosTableBody"></tbody>
                             </table>
+							<label for="uploadPhotos" class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-upload me-1"></i> Upload Photo(s)</label>
+							<input type="file" accept="image/*" multiple class="d-none" name="uploadPhotos" id="uploadPhotos" onchange="addPhotoRow(this)">
+                        </div>
+						
+                        <!-- Document Attachment -->
+                        <div class="mb-3 pt-2 px-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <label class="form-label m-0 fw-bold"><i class="fa-solid fa-paperclip me-2"></i>Document Attachment</label>
+                            </div>
+                            <table class="table table-custom bg-white">
+                                <thead>
+                                    <tr>
+                                        <th style='width: 1rem;'>No.</th>
+                                        <th style='width: 15rem;'>Document Title</th>
+										<th style='width: 15rem;'>Remark</th>
+										<th style='width: 3rem;'>Size</th>
+                                        <th style="width: 3rem;">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="docsTableBody"></tbody>
+                            </table>
+							<label for="uploadDocs" class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-upload me-1"></i> Upload Document(s)</label>
+							<input type="file" multiple class="d-none" name="uploadDocs" id="uploadDocs" onchange="addDocsRow(this)">
                         </div>
 						
 						<!-- Next Inspection Date -->
@@ -1467,7 +1557,7 @@
             addReePurchasedRow();
             addB3Row();
             addC5Row();
-            addPhotoRow();
+            //addPhotoRow();
         });
 
         // Dynamic Table Row Handlers
@@ -1544,7 +1634,8 @@
             tbody.appendChild(tr);
         }
 
-        function addPhotoRow() {
+        function addPhotoRow(inputElement) {
+			/*
             const tbody = document.getElementById('photosTableBody');
             const rowId = 'photo_' + Date.now();
             const tr = document.createElement('tr');
@@ -1555,7 +1646,73 @@
                 <td class="text-center"><button type="button" class="btn btn-outline-danger btn-sm" onclick="removeRow('${rowId}')"><i class="fa-solid fa-trash-can"></i></button></td>
             `;
             tbody.appendChild(tr);
+			*/
+			const tbody = document.getElementById('photosTableBody');
+			let currentPhotos = document.querySelectorAll('#photosTableBody tr').length;
+			const rowId = 'photo_' + Date.now();
+			let tbodyHTML = '';
+			Array.from(inputElement.files).forEach(file => {
+				console.log(file.name);
+				tbodyHTML += `<tr id='` + rowId + `'>
+					<td>` + (++currentPhotos) + `</td>
+					<td><textarea class="form-control"></textarea></td>
+					<td><textarea class="form-control"></textarea></td>
+					<td style='text-align: center;'><img style='max-width: 15rem; max-height: 5rem;' src='` + URL.createObjectURL(file) + `'></img></td>
+					<td class="text-center"><button type="button" class="btn btn-outline-danger btn-sm" onclick="removeRow('${rowId}')"><i class="fa-solid fa-trash-can"></i></button></td>
+				</tr>`;
+			});
+			tbody.innerHTML += tbodyHTML;
         }
+		
+        function addDocsRow(inputElement) {
+			/*
+            const tbody = document.getElementById('photosTableBody');
+            const rowId = 'photo_' + Date.now();
+            const tr = document.createElement('tr');
+            tr.id = rowId;
+            tr.innerHTML = `
+                <td><input type="file" multiple class="form-control form-control-sm form-control form-control-sm-sm"></td>
+                <td><input type="text" class="form-control form-control-sm form-control form-control-sm-sm" placeholder="Attachment description"></td>
+                <td class="text-center"><button type="button" class="btn btn-outline-danger btn-sm" onclick="removeRow('${rowId}')"><i class="fa-solid fa-trash-can"></i></button></td>
+            `;
+            tbody.appendChild(tr);
+			*/
+			const tbody = document.getElementById('docsTableBody');
+			let currentDocs = document.querySelectorAll('#docsTableBody tr').length;
+			const rowId = 'docs_' + Date.now();
+			let tbodyHTML = '';
+			Array.from(inputElement.files).forEach(file => {
+				console.log(file.name);
+				tbodyHTML += `<tr id='` + rowId + `'>
+					<td>` + (++currentDocs) + `</td>
+					<td>` + file.name + `</td>
+					<td><textarea class="form-control"></textarea></td>
+					<td>` + humanFileSize(file.size) + `</td>
+					<td class="text-center"><button type="button" class="btn btn-outline-danger btn-sm" onclick="removeRow('${rowId}')"><i class="fa-solid fa-trash-can"></i></button></td>
+				</tr>`;
+			});
+			tbody.innerHTML += tbodyHTML;
+        }
+		
+		function humanFileSize(bytes, si=false, dp=1) {
+		  const thresh = si ? 1000 : 1024;
+
+		  if (Math.abs(bytes) < thresh) {
+			return bytes + ' B';
+		  }
+
+		  const units = ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+		  let u = -1;
+		  const r = 10**dp;
+
+		  do {
+			bytes /= thresh;
+			++u;
+		  } while (Math.round(Math.abs(bytes) * r) / r >= thresh && u < units.length - 1);
+
+
+		  return bytes.toFixed(dp) + ' ' + units[u];
+		}		
 
         function removeRow(id) {
             const row = document.getElementById(id);
@@ -1573,11 +1730,51 @@
         function handleRegToggle(targetId, type) {
             const box = document.getElementById(targetId);
             if (type === 'Registered') {
-                box.innerHTML = `<input type="text" class="form-control form-control-sm form-control form-control-sm-sm mt-1" placeholder="Enter Reg. No.">`;
+                box.innerHTML = `<input name="suREERegNo" id="suREERegNo" type="text" class="form-control form-control-sm form-control form-control-sm-sm mt-1" placeholder="Enter Reg. No. (EP-L18-0000 for demo)" onchange="getDataForPreview(this)">`;
             } else {
                 box.innerHTML = `<small class="text-muted">Will be generated after submitted.</small>`;
+				getDataForPreview('');
             }
         }
+		
+		function getDataForPreview(inputEle) {
+			console.log(inputEle.value);
+			if (inputEle.value === 'EP-L18-0000') {
+				document.querySelector('input[name="business_reg_no"').value = '12345678';
+				document.querySelector('input[name="company_name_eng"').value = 'Demo Company Limited';
+				document.querySelector('input[name="company_name_chi"').value = '示範有限公司';
+				document.querySelector('input[name="company_status"][value="Active"]').checked = true;
+				document.querySelector('input[name="nameEng"').value = 'Peter CHAN';
+				document.querySelector('input[name="nameChi"').value = '陳大文';
+				document.querySelector('input[name="postTitle"').value = 'CEO';
+				document.querySelector('input[name="tel"').value = '12345678';
+				document.querySelector('input[name="email"').value = 'peter.chan@gmail.com';
+				document.querySelector('input[id="ba.locArea"').value = 'Hong Kong';
+				document.querySelector('input[id="ba.locDistrict"').value = 'Wan Chai';
+				document.querySelector('input[id="ba.locStreet"').value = '123 ABC Street';
+				document.querySelector('input[id="ba.locBuilding"').value = 'ABC Tower';
+				document.querySelector('input[id="ba.locBlock"').value = 'A';
+				document.querySelector('input[id="ba.locFloor"').value = '21';
+				document.querySelector('input[id="ba.locRoom"').value = '2101';			
+			} else {
+				document.querySelector('input[name="business_reg_no"').value = '';
+				document.querySelector('input[name="company_name_eng"').value = '';
+				document.querySelector('input[name="company_name_chi"').value = '';
+				document.querySelector('input[name="company_status"][value="Not specified"]').checked = true;
+				document.querySelector('input[name="nameEng"').value = '';
+				document.querySelector('input[name="nameChi"').value = '';
+				document.querySelector('input[name="postTitle"').value = '';
+				document.querySelector('input[name="tel"').value = '';
+				document.querySelector('input[name="email"').value = '';
+				document.querySelector('input[id="ba.locArea"').value = '';
+				document.querySelector('input[id="ba.locDistrict"').value = '';
+				document.querySelector('input[id="ba.locStreet"').value = '';
+				document.querySelector('input[id="ba.locBuilding"').value = '';
+				document.querySelector('input[id="ba.locBlock"').value = '';
+				document.querySelector('input[id="ba.locFloor"').value = '';
+				document.querySelector('input[id="ba.locRoom"').value = '';					
+			}
+		}
 
         function toggleOtherVisit(show) {
             const container = document.getElementById('otherVisitContainer');
@@ -1597,9 +1794,13 @@
             alert('Form submitted successfully!');
         }
 		
-		function toggleDivShowHide(id) {
+		function toggleDivShowHide(id, action) {
 			let ele = document.querySelector(id);
-			ele.classList.contains('d-none') ? ele.classList.remove('d-none') : ele.classList.add('d-none');
+			if (action) {
+				action === 'show' ? ele.classList.remove('d-none') : action === 'hide' ? ele.classList.add('d-none') : '';
+			} else {
+				ele.classList.contains('d-none') ? ele.classList.remove('d-none') : ele.classList.add('d-none');
+			}
 		}
 		
 		function copyAddress() {			
