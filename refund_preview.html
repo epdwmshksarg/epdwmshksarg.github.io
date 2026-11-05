@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demand Note Refund Application - Mockup</title>
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            padding-bottom: 5rem;
+        }
+        .section-card {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 0.6rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+            margin-bottom: 1.5rem;
+            background: #ffffff;
+        }
+        .section-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 0.85rem 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            border-top-left-radius: 0.6rem;
+            border-top-right-radius: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .info-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #64748b;
+            margin-bottom: 0.15rem;
+            font-weight: 600;
+        }
+        .info-value {
+            font-size: 0.98rem;
+            font-weight: 500;
+            color: #0f172a;
+            background-color: #f8fafc;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid #e2e8f0;
+        }
+        .repeater-item {
+            background-color: #fcfcfd;
+            border: 1px dashed #cbd5e1;
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .sticky-actions {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid #dee2e6;
+            padding: 0.85rem 0;
+            z-index: 1030;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-4">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1 d-flex align-items-center gap-2">
+                <i class="bi bi-file-earmark-medical"></i>
+                Demand Note Refund Application Form
+            </span>
+            <span class="badge bg-light text-primary">Demo Mockup</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form id="refundForm" onsubmit="event.preventDefault();">
+
+            <!-- PART A: Demand Note Information (Pure informative, no user inputs) -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span><i class="bi bi-info-circle text-primary me-2"></i>Part A - Demand Note Information</span>
+                    <span class="badge bg-secondary-subtle text-secondary fw-normal">Read-Only</span>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <div class="info-label">Demand Note No.</div>
+                            <div class="info-value font-monospace">697014829103</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-label">Department Reference No</div>
+                            <div class="info-value font-monospace">L26-0418-R2-0932</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-label">E-Submit</div>
+                            <div class="info-value">
+                                <span class="badge bg-success-subtle text-success border border-success-subtle">eSubmit</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-label">REE2 Quarter</div>
+                            <div class="info-value">2026 Q3</div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="info-label">Debtor Name</div>
+                            <div class="info-value">GreenTech Recycling & Logistics Limited</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-label">Total Amount</div>
+                            <div class="info-value text-primary fw-bold">HK$48,500.00</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-label">Outstanding Amount</div>
+                            <div class="info-value">HK$0.00</div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="info-label">Issue Date</div>
+                            <div class="info-value">15/08/2026</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-label">Due Date</div>
+                            <div class="info-value">14/09/2026</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-label">Settlement Date</div>
+                            <div class="info-value">10/09/2026</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-label">User Code</div>
+                            <div class="info-value d-flex flex-wrap gap-1 align-items-center">
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle font-monospace">R69110440252ES1</span>
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle font-monospace">B69574000S140</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART B: Refund -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span><i class="bi bi-cash-coin text-primary me-2"></i>Part B - Refund</span>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Receipted Amount</label>
+                            <div class="input-group">
+                                <span class="input-group-text">HK$</span>
+                                <input type="text" class="form-control currency-input" placeholder="#,###.00" value="48,500.00">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Amount of refund claimed</label>
+                            <div class="input-group">
+                                <span class="input-group-text">HK$</span>
+                                <input type="text" class="form-control currency-input" placeholder="#,###.00" value="4,200.00">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-medium">Remark</label>
+                            <textarea class="form-control" rows="5" placeholder="Enter refund justification or remarks..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART C: Internal Record -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span><i class="bi bi-clipboard-check text-primary me-2"></i>Part C - Internal Record</span>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label fw-medium">Refund Application Form received on</label>
+                            <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy" value="12/10/2026">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-medium">Checked by</label>
+                            <select class="form-select">
+                                <option value="">-- Select Officer --</option>
+                                <option value="ACO[WR]1" selected>ACO[WR]1</option>
+                                <option value="ACO[WR]2">ACO[WR]2</option>
+                                <option value="AOII[WR]1">AOII[WR]1</option>
+                                <option value="AOII[WR]2">AOII[WR]2</option>
+                                <option value="AOI[WR]1">AOI[WR]1</option>
+                                <option value="AOI[WR]2">AOI[WR]2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-medium">Checked date</label>
+                            <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy" value="15/10/2026">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label fw-medium">Refund authorized by</label>
+                            <select class="form-select">
+                                <option value="">-- Select Authorizer --</option>
+                                <option value="EPO[WMS]1" selected>EPO[WMS]1</option>
+                                <option value="EPO[WMS]2">EPO[WMS]2</option>
+                                <option value="EPO[WMS]3">EPO[WMS]3</option>
+                                <option value="SEPO[WMS]1">SEPO[WMS]1</option>
+                                <option value="SEPO[WMS]2">SEPO[WMS]2</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-medium">Refund authorized date</label>
+                            <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy" value="18/10/2026">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-medium">Submission date to AOII(A) / AcSG:</label>
+                            <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy" value="20/10/2026">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART D: Advised by AcSG (Allow Multiple) -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span><i class="bi bi-journal-check text-primary me-2"></i>Part D - Advised by AcSG</span>
+                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="addPartDRow()">
+                        <i class="bi bi-plus-lg me-1"></i>Add Record
+                    </button>
+                </div>
+                <div class="card-body p-4" id="partDContainer">
+                    <!-- Dynamic items rendered via JS -->
+                </div>
+            </div>
+
+            <!-- PART E: Supporting Documents (Allow Multiple) -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span><i class="bi bi-paperclip text-primary me-2"></i>Part E - Supporting Documents</span>
+                    <button type="button" class="btn btn-sm btn-outline-primary" onclick="addPartERow()">
+                        <i class="bi bi-plus-lg me-1"></i>Add Document
+                    </button>
+                </div>
+                <div class="card-body p-4">
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle mb-0" id="partETable">
+                            <thead class="table-light">
+                                <tr>
+                                    <th style="width: 28%;">Upload File <small class="text-muted fw-normal">(pdf, doc, docx, jpg, png)</small></th>
+                                    <th style="width: 22%;">File Category</th>
+                                    <th style="width: 30%;">Description</th>
+                                    <th style="width: 12%;">Size</th>
+                                    <th style="width: 8%;" class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="partEContainer">
+                                <!-- Dynamic rows rendered via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART F: Internal Remark -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span><i class="bi bi-chat-left-text text-primary me-2"></i>Part F - Internal Remark</span>
+                </div>
+                <div class="card-body p-4">
+                    <label class="form-label fw-medium">Internal Remark</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter internal remarks for audit trail..."></textarea>
+                </div>
+            </div>
+
+            <!-- Sticky Bottom Actions -->
+            <div class="sticky-actions">
+                <div class="container d-flex justify-content-between align-items-center">
+                    <div class="text-muted small">
+                        <i class="bi bi-shield-check me-1"></i>Changes are logged for internal audit.
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-outline-secondary px-4" onclick="triggerToast('Cancel', 'Operation cancelled.')">
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-outline-primary px-4" onclick="triggerToast('Save', 'Draft saved successfully.')">
+                            <i class="bi bi-floppy me-1"></i>Save
+                        </button>
+                        <button type="button" class="btn btn-primary px-4" onclick="triggerToast('Initiate', 'Refund workflow initiated.')">
+                            <i class="bi bi-play-fill me-1"></i>Initiate
+                        </button>
+                        <button type="button" class="btn btn-success px-4" onclick="triggerToast('Complete', 'Refund application marked as Complete.')">
+                            <i class="bi bi-check2-circle me-1"></i>Complete
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Feedback Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="margin-bottom: 3.5rem;">
+        <div id="actionToast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">Action executed.</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let partDCount = 0;
+
+        // Add a new "Part D - Advised by AcSG" block
+        function addPartDRow() {
+            partDCount++;
+            const container = document.getElementById('partDContainer');
+            const wrapper = document.createElement('div');
+            wrapper.className = 'repeater-item';
+            wrapper.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="badge bg-primary">AcSG Advice Record #${partDCount}</span>
+                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('.repeater-item').remove()">
+                        <i class="bi bi-trash me-1"></i>Remove
+                    </button>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label class="form-label fw-medium">Status</label>
+                        <select class="form-select">
+                            <option value="In Progress" selected>In Progress</option>
+                            <option value="Checked">Checked</option>
+                            <option value="Advised">Advised</option>
+                            <option value="Completed">Completed</option>
+                            <option value="More...">More...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-medium">Date of completion</label>
+                        <input type="date" class="form-control" placeholder="dd/MM/yyyy">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-medium">The claimed amount was debited to user code</label>
+                        <select class="form-select">
+                            <option value="R69110440252ES1" selected>R69110440252ES1</option>
+                            <option value="B69574000S140">B69574000S140</option>
+                            <option value="More...">More...</option>
+                        </select>
+                    </div>					
+                    <div class="col-md-12">
+                        <label class="form-label fw-medium">Payment Voucher No.</label>
+                        <input type="text" class="form-control" placeholder="e.g. PV-2026-0891">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-medium">Remark</label>
+                        <textarea class="form-control" rows="2" placeholder="Enter AcSG remarks..."></textarea>
+                    </div>
+                </div>
+            `;
+            container.appendChild(wrapper);
+        }
+
+        // Add a new "Part E - Supporting Documents" row
+        function addPartERow(mockFilename = '', mockSize = '', mockDesc = '') {
+            const tbody = document.getElementById('partEContainer');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>
+                    <input type="file" class="form-control form-control-sm" accept=".pdf,.doc,.docx,.jpg,.png" onchange="updateFileSize(this)">
+                    ${mockFilename ? `<div class="form-text text-success"><i class="bi bi-check-circle me-1"></i>Loaded: ${mockFilename}</div>` : ''}
+                </td>
+                <td>
+                    <select class="form-select form-select-sm">
+                        <option value="Refund Application Form" selected>Refund Application Form</option>
+                        <option value="Correspondence">Correspondence</option>
+                        <option value="More...">More...</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control form-control-sm" placeholder="Document description" value="${mockDesc}">
+                </td>
+                <td>
+                    <input type="text" class="form-control form-control-sm bg-light file-size-display" readonly placeholder="0 KB" value="${mockSize}">
+                </td>
+                <td class="text-center">
+                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('tr').remove()" title="Delete">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        // Auto-populate readable file size in KB or MB when a user selects a file
+        function updateFileSize(fileInput) {
+            const sizeField = fileInput.closest('tr').querySelector('.file-size-display');
+            if (fileInput.files && fileInput.files[0]) {
+                const bytes = fileInput.files[0].size;
+                if (bytes >= 1048576) {
+                    sizeField.value = (bytes / 1048576).toFixed(2) + ' MB';
+                } else {
+                    sizeField.value = Math.max(1, Math.round(bytes / 1024)) + ' KB';
+                }
+            } else {
+                sizeField.value = '';
+            }
+        }
+
+        // Format currency inputs on blur
+        document.addEventListener('blur', function(e) {
+            if (e.target.classList.contains('currency-input')) {
+                let raw = e.target.value.replace(/[^0-9.]/g, '');
+                if (raw !== '' && !isNaN(raw)) {
+                    e.target.value = parseFloat(raw).toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+                }
+            }
+        }, true);
+
+        // Toast notification helper for Action buttons
+        function triggerToast(action, message) {
+            const toastEl = document.getElementById('actionToast');
+            document.getElementById('toastMessage').innerHTML = `<strong>[${action}]</strong> ${message}`;
+            const toast = bootstrap.Toast.getOrCreateInstance(toastEl);
+            toast.show();
+        }
+
+        // Initialize with 1 default row in Part D and Part E
+        window.addEventListener('DOMContentLoaded', () => {
+            addPartDRow();
+            addPartERow('signed_refund_form_2026.pdf', '428 KB', 'Signed application form from debtor');
+        });
+    </script>
+</body>
+</html>
