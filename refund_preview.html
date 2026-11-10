@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             padding-bottom: 5rem;
         }
+
         .section-card {
             border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 0.6rem;
@@ -21,6 +23,7 @@
             margin-bottom: 1.5rem;
             background: #ffffff;
         }
+
         .section-header {
             background-color: #f8f9fa;
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -33,14 +36,15 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .info-label {
             font-size: 0.8rem;
-            text-transform: uppercase;
             letter-spacing: 0.03em;
             color: #64748b;
             margin-bottom: 0.15rem;
             font-weight: 600;
         }
+
         .info-value {
             font-size: 0.98rem;
             font-weight: 500;
@@ -50,6 +54,7 @@
             border-radius: 0.375rem;
             border: 1px solid #e2e8f0;
         }
+
         .repeater-item {
             background-color: #fcfcfd;
             border: 1px dashed #cbd5e1;
@@ -58,6 +63,7 @@
             margin-bottom: 1rem;
             position: relative;
         }
+
         .sticky-actions {
             position: fixed;
             bottom: 0;
@@ -72,6 +78,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Top Navigation Bar -->
@@ -79,7 +86,7 @@
         <div class="container">
             <span class="navbar-brand mb-0 h1 d-flex align-items-center gap-2">
                 <i class="bi bi-file-earmark-medical"></i>
-                Demand Note Refund Application Form
+                Refund Application Form
             </span>
             <span class="badge bg-light text-primary">Demo Mockup</span>
         </div>
@@ -101,17 +108,18 @@
                             <div class="info-value font-monospace">697014829103</div>
                         </div>
                         <div class="col-md-3">
-                            <div class="info-label">Department Reference No</div>
+                            <div class="info-label">Department Reference No.</div>
                             <div class="info-value font-monospace">L26-0418-R2-0932</div>
                         </div>
                         <div class="col-md-3">
-                            <div class="info-label">E-Submit</div>
+                            <div class="info-label">Delivery Mode</div>
                             <div class="info-value">
-                                <span class="badge bg-success-subtle text-success border border-success-subtle">eSubmit</span>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle">Hardcopy</span>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle">Electronic</span>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="info-label">REE2 Quarter</div>
+                            <div class="info-label">Return Period</div>
                             <div class="info-value">2026 Q3</div>
                         </div>
 
@@ -120,15 +128,6 @@
                             <div class="info-value">GreenTech Recycling & Logistics Limited</div>
                         </div>
                         <div class="col-md-3">
-                            <div class="info-label">Total Amount</div>
-                            <div class="info-value text-primary fw-bold">HK$48,500.00</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="info-label">Outstanding Amount</div>
-                            <div class="info-value">HK$0.00</div>
-                        </div>
-
-                        <div class="col-md-3">
                             <div class="info-label">Issue Date</div>
                             <div class="info-value">15/08/2026</div>
                         </div>
@@ -136,17 +135,47 @@
                             <div class="info-label">Due Date</div>
                             <div class="info-value">14/09/2026</div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="info-label">Settlement Date</div>
-                            <div class="info-value">10/09/2026</div>
-                        </div>
+
                         <div class="col-md-3">
                             <div class="info-label">User Code</div>
                             <div class="info-value d-flex flex-wrap gap-1 align-items-center">
                                 <span class="badge bg-primary-subtle text-primary border border-primary-subtle font-monospace">R69110440252ES1</span>
-                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle font-monospace">B69574000S140</span>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="info-label">Demanded Amount</div>
+                            <div class="info-value fw-bold">$48,500.00</div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="info-label">Payment Amount</div>
+                            <div class="info-value text-success fw-bold">$48,000.00</div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="info-label">Outstanding Amount</div>
+                            <div class="info-value text-danger fw-bold">$500.00</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-label">Settlement Date</div>
+                            <div class="info-value">14/09/2026</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-value d-flex flex-wrap gap-1 align-items-center">
+                                <span
+                                    class="badge bg-primary-subtle text-primary border border-primary-subtle font-monospace">B69574000S140</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="info-value fw-bold">$23,750.00</div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="info-value text-success fw-bold">$30,000.00</div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="info-value text-info fw-bold">-$6,250.00</div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="info-value">14/09/2026</div>
+                        </div>                                                                                        
                     </div>
                 </div>
             </div>
@@ -159,23 +188,45 @@
                 <div class="card-body p-4">
                     <div class="row g-3">
                         <div class="col-md-6">
+                            <label class="form-label fw-medium">The claimed amount was credited to user code</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="169L17131">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <label class="form-label fw-medium">Receipted Amount</label>
                             <div class="input-group">
-                                <span class="input-group-text">HK$</span>
-                                <input type="text" class="form-control currency-input" placeholder="#,###.00" value="48,500.00">
+                                <span class="input-group-text">$</span>
+                                <input type="text" class="form-control currency-input" placeholder="#,###.00"
+                                    value="4,200.00">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <label class="form-label fw-medium">Amount of refund claimed</label>
                             <div class="input-group">
-                                <span class="input-group-text">HK$</span>
-                                <input type="text" class="form-control currency-input" placeholder="#,###.00" value="4,200.00">
+                                <span class="input-group-text">$</span>
+                                <input type="text" class="form-control currency-input" placeholder="#,###.00"
+                                    value="4,200.00">
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <label class="form-label fw-medium">Remark</label>
-                            <textarea class="form-control" rows="5" placeholder="Enter refund justification or remarks..."></textarea>
-                        </div>
+                        </div> 
+                        <div class="row align-items-center">
+                            <div class="col-md-12">
+                                <label class="form-label fw-medium">
+                                    Reason(s) / Justification(s)
+                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="true"
+                                        aria-expanded="false">Preset Wording</button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" onclick="appendPresetWording('duplicatePayment')" href="javascript:void(0)">Duplicate payment </a></li>
+                                        <li><a class="dropdown-item" onclick="appendPresetWording('overpayment')" href="javascript:void(0)">Overpayment</a></li>
+                                        <li><a class="dropdown-item" onclick="appendPresetWording('cancellation')" href="javascript:void(0)">Cancellation</a></li>
+                                        <li><a class="dropdown-item" onclick="appendPresetWording('auditAdjustment')" href="javascript:void(0)">Audit Adjustment</a></li>
+                                        <li><a class="dropdown-item" onclick="appendPresetWording('other')" href="javascript:void(0)">Other</a></li>
+                                    </ul>
+                                </label>
+                                <textarea class="form-control" id="refundReasonTextarea" rows="5" placeholder="Enter refund justification or remarks..."></textarea>
+                                <code id="reminderForPresetWording" class="badge text-bg-warning d-none">To ASL developer: Please have server-side data rendering for those values in X for preset wording</code>
+                            </div>
+                        </div>       
                     </div>
                 </div>
             </div>
@@ -187,11 +238,12 @@
                 </div>
                 <div class="card-body p-4">
                     <div class="row g-3">
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <label class="form-label fw-medium">Refund Application Form received on</label>
-                            <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy" value="12/10/2026">
+                            <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy"
+                                value="12/10/2026">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label fw-medium">Checked by</label>
                             <select class="form-select">
                                 <option value="">-- Select Officer --</option>
@@ -203,12 +255,13 @@
                                 <option value="AOI[WR]2">AOI[WR]2</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label fw-medium">Checked date</label>
-                            <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy" value="15/10/2026">
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Date</label>
+                            <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy"
+                                value="15/10/2026">
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label fw-medium">Refund authorized by</label>
                             <select class="form-select">
                                 <option value="">-- Select Authorizer --</option>
@@ -219,13 +272,15 @@
                                 <option value="SEPO[WMS]2">SEPO[WMS]2</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label fw-medium">Refund authorized date</label>
-                            <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy" value="18/10/2026">
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Date</label>
+                            <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy"
+                                value="18/10/2026">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <label class="form-label fw-medium">Submission date to AOII(A) / AcSG:</label>
-                            <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy" value="20/10/2026">
+                            <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy"
+                                value="20/10/2026">
                         </div>
                     </div>
                 </div>
@@ -257,7 +312,8 @@
                         <table class="table table-bordered align-middle mb-0" id="partETable">
                             <thead class="table-light">
                                 <tr>
-                                    <th style="width: 28%;">Upload File <small class="text-muted fw-normal">(pdf, doc, docx, jpg, png)</small></th>
+                                    <th style="width: 28%;">Upload File <small class="text-muted fw-normal">(pdf, doc,
+                                            docx, jpg, png)</small></th>
                                     <th style="width: 22%;">File Category</th>
                                     <th style="width: 30%;">Description</th>
                                     <th style="width: 12%;">Size</th>
@@ -279,29 +335,45 @@
                 </div>
                 <div class="card-body p-4">
                     <label class="form-label fw-medium">Internal Remark</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter internal remarks for audit trail..."></textarea>
+                    <textarea class="form-control" rows="3"
+                        placeholder="Enter internal remarks for audit trail..."></textarea>
                 </div>
             </div>
+
+            <!-- PART G: Action Log (Read-only and system auto-generate) -->
+            <div class="section-card">
+                <div class="section-header">
+                    <span><i class="bi bi-journal-text text-primary me-2"></i>Part G - Action Log</span>
+                </div>
+                <div class="card-body px-4">
+                    <ul class="list-group list-group-flush small" id="actionLogUl">
+                        <li class="list-group-item list-group-item-action">[10/11/2026 12:40] Account Team User Create Refund for Demand Note (697014829103)</li>
+                    </ul>
+                </div>
+            </div>            
 
             <!-- Sticky Bottom Actions -->
             <div class="sticky-actions">
                 <div class="container d-flex justify-content-between align-items-center">
                     <div class="text-muted small">
-                        <i class="bi bi-shield-check me-1"></i>Changes are logged for internal audit.
-                    </div>
-                    <div class="d-flex gap-2">
-                        <button type="button" class="btn btn-outline-secondary px-4" onclick="triggerToast('Cancel', 'Operation cancelled.')">
-                            Cancel
-                        </button>
-                        <button type="button" class="btn btn-outline-primary px-4" onclick="triggerToast('Save', 'Draft saved successfully.')">
+                        <button type="button" class="btn btn-outline-primary px-4"
+                            onclick="appendActionLog('Save'); triggerToast('Save', 'Draft saved successfully.')">
                             <i class="bi bi-floppy me-1"></i>Save
                         </button>
-                        <button type="button" class="btn btn-primary px-4" onclick="triggerToast('Initiate', 'Refund workflow initiated.')">
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-primary px-4"
+                            onclick="confirm('Confirm Initiate?') ? (() => {appendActionLog('Initiate'); triggerToast('Initiate', 'Refund application marked as Refund (In Progress) / Initiate')})() : false">
                             <i class="bi bi-play-fill me-1"></i>Initiate
                         </button>
-                        <button type="button" class="btn btn-success px-4" onclick="triggerToast('Complete', 'Refund application marked as Complete.')">
+                        <button type="button" class="btn btn-success px-4"
+                            onclick="confirm('Confirm Complete?') ? (() => {appendActionLog('Complete'); triggerToast('Complete', 'Refund application marked as Refunded / Completed.')})() : false">
                             <i class="bi bi-check2-circle me-1"></i>Complete
                         </button>
+                        <button type="button" class="btn btn-danger px-4"
+                            onclick="confirm('Confirm Void?') ? (() => {appendActionLog('Void'); triggerToast('Cancel', 'Refund application marked as Refund (Cancelled) / Void')})() : false;">
+                            <i class="bi bi-x-circle-fill me-1"></i>Void
+                        </button>                        
                     </div>
                 </div>
             </div>
@@ -311,7 +383,8 @@
 
     <!-- Feedback Toast -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3" style="margin-bottom: 3.5rem;">
-        <div id="actionToast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div id="actionToast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive"
+            aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body" id="toastMessage">Action executed.</div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
@@ -342,10 +415,8 @@
                         <label class="form-label fw-medium">Status</label>
                         <select class="form-select">
                             <option value="In Progress" selected>In Progress</option>
-                            <option value="Checked">Checked</option>
-                            <option value="Advised">Advised</option>
                             <option value="Completed">Completed</option>
-                            <option value="More...">More...</option>
+                            <option value="Cancelled">Cancelled</option>
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -355,14 +426,14 @@
                     <div class="col-md-6">
                         <label class="form-label fw-medium">The claimed amount was debited to user code</label>
                         <select class="form-select">
-                            <option value="R69110440252ES1" selected>R69110440252ES1</option>
+                            <option value="169L17131" selected>169L17131</option>
+                            <option value="R69110440252ES1">R69110440252ES1</option>
                             <option value="B69574000S140">B69574000S140</option>
-                            <option value="More...">More...</option>
                         </select>
                     </div>					
                     <div class="col-md-12">
                         <label class="form-label fw-medium">Payment Voucher No.</label>
-                        <input type="text" class="form-control" placeholder="e.g. PV-2026-0891">
+                        <input type="text" maxlength="12" class="form-control" placeholder="(format valiadation: max 12, digit only)">
                     </div>
                     <div class="col-12">
                         <label class="form-label fw-medium">Remark</label>
@@ -420,7 +491,7 @@
         }
 
         // Format currency inputs on blur
-        document.addEventListener('blur', function(e) {
+        document.addEventListener('blur', function (e) {
             if (e.target.classList.contains('currency-input')) {
                 let raw = e.target.value.replace(/[^0-9.]/g, '');
                 if (raw !== '' && !isNaN(raw)) {
@@ -445,6 +516,44 @@
             addPartDRow();
             addPartERow('signed_refund_form_2026.pdf', '428 KB', 'Signed application form from debtor');
         });
+
+        function appendPresetWording(value) 
+        {
+            let presetwording = '';
+            switch (value) {
+                case 'duplicatePayment': presetwording = 'Duplicate payment for Q{X} {XXXX} on {XX/XX/XXXX} settlement date'; break;
+                case 'overpayment': presetwording = 'Overpayment of ${XX} '; break;
+                case 'cancellation': presetwording = 'Cancellation of registration as a Registered Supplier'; break;
+                case 'auditAdjustment': presetwording = 'The supplier declared to refund based on discrepancy for the audit year ended {XX/XX/XXXX}'; break;
+                default: presetwording = 'Any other required preset wording are welcome to be added';
+            }
+            document.getElementById('refundReasonTextarea').innerHTML += presetwording + '\n';
+            document.getElementById('reminderForPresetWording').classList.remove('d-none');
+        }
+
+        function appendActionLog(action) {
+            const now = new Date();
+
+            const pad = (n) => String(n).padStart(2, '0');
+
+            const day = pad(now.getDate());
+            const month = pad(now.getMonth() + 1); // Months are zero-indexed (0 = Jan)
+            const year = now.getFullYear();
+            const hours = pad(now.getHours());     // 24-hour format (0–23)
+            const minutes = pad(now.getMinutes());
+            const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}`;            
+            let actionString = `[${formattedDate}]`;
+            //Initiate Complete Void
+            switch (action) {
+                case 'Initiate': actionString += ' AOII[WR] Initiate the Refund form. Status changed to Refund (In Progress) / Initiate'; break;
+                case 'Complete': actionString += ' AOII[WR] Complete the Refund form. Status changed to Refunded / Complete'; break;
+                case 'Void': actionString += ' AOII[WR] Void the Refund form. Status changed to Refund (Cancelled) / Void'; break;
+                case 'Save': actionString += ' Account Team User Update the Refund form'; break;
+                default: actionString += 'Any other required action log are welcome to be added';
+            }
+            document.getElementById('actionLogUl').innerHTML += `<li class="list-group-item list-group-item-action">${actionString}</li>`;
+        }
     </script>
 </body>
+
 </html>
