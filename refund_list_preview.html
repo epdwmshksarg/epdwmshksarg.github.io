@@ -96,8 +96,8 @@
 				<p id="reminderForNewRefund" class="round p-2 text-bg-warning d-none">
 					<strong>To ASL developer: Please have below validations check in main Refund form:</strong><br>
 					Auto-fill in Company particular when DN Number inputted. Please search the DN Number during user input (event='oninput')<br>
-					If the target DN do NOT received any payment, please 'Block' the process with error message prompted ('The selected Demand Note do not have outstanding amount.')<br>
-					If there is Refund form existed for the Demand Note, please 'Block' the process with error message prompted ('The selected Demand Note has been already associated with Refund application.')
+					If the target DN do NOT received any payment, please 'Block' the process with error message prompted ('The payment of the selected Demand Note has not been settled.')<br>
+					If there is Refund form existed for the Demand Note, please 'Block' the process with error message prompted ('A refund record has already been created for the selected Demand Note.')
 				</p>
 			</div>
 		</div>
@@ -109,7 +109,7 @@
 				<i class="fa-solid fa-magnifying-glass me-2"></i>Search
 			</div>
 			<div class="card-body">
-				<h6 class="fw-bold mb-3 border-bottom pb-2">Frequent Used</h6>
+				<!-- <h6 class="fw-bold mb-3 border-bottom pb-2">Frequent Used</h6> -->
 				<form id="searchForm" onsubmit="event.preventDefault(); applySearchFilters();">
 					<div class="row g-3">
 
@@ -270,7 +270,7 @@
 									onchange="toggleSelectAll(this)">
 							</th>
 							<th scope="col" class="sortable" onclick="sortTable('dNoteNum')">
-								GDN No. <span id="sort-dNoteNum" class="text-muted"><i
+								Demand Note No. <span id="sort-dNoteNum" class="text-muted"><i
 										class="fa-solid fa-sort ms-1"></i></span>
 							</th>
 							<th scope="col" class="sortable" onclick="sortTable('suREERegNo')">
@@ -282,7 +282,7 @@
 										class="fa-solid fa-sort ms-1"></i></span>
 							</th>														
 							<th scope="col" class="sortable" onclick="sortTable('cmpNameEN')">
-								Supplier Name <span id="sort-cmpNameEN" class="text-muted"><i
+								Debtor Name <span id="sort-cmpNameEN" class="text-muted"><i
 										class="fa-solid fa-sort ms-1"></i></span>
 							</th>
 							<th scope="col" class="sortable" onclick="sortTable('amount')">

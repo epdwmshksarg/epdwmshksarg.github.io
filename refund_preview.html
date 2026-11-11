@@ -108,7 +108,7 @@
                             <div class="info-value font-monospace">697014829103</div>
                         </div>
                         <div class="col-md-3">
-                            <div class="info-label">Department Reference No.</div>
+                            <div class="info-label">Departmental Reference No.</div>
                             <div class="info-value font-monospace">L26-0418-R2-0932</div>
                         </div>
                         <div class="col-md-3">
@@ -183,14 +183,24 @@
             <!-- PART B: Refund -->
             <div class="section-card">
                 <div class="section-header">
-                    <span><i class="bi bi-cash-coin text-primary me-2"></i>Part B - Refund</span>
+                    <span><i class="bi bi-cash-coin text-primary me-2"></i>Part B - Refund (Details of claim)</span>
                 </div>
                 <div class="card-body p-4">
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label fw-medium">The claimed amount was credited to user code</label>
+                            <label class="form-label fw-medium">The claimed amount was credited to user code</label>                            
                             <div class="input-group">
-                                <input type="text" class="form-control" value="169L17131">
+                                <!-- <input type="text" class="form-control" value="169L17131"> -->
+                                <select class="form-select">
+                                    <option value="">-- Select User Code --</option>
+                                    <option value="R69110440252ES1" selected>PERO: Quarterly payment - R69110440252ES1</option>
+                                    <option value="R69110440252FS1">PERO: Assessment notice - R69110440252FS1</option>
+                                    <option value="R69110440252GS1">PERO: 5 % surcharge - R69110440252GS1</option>
+                                    <option value="R69110440252HS1">PERO: 10% surcharge - R69110440252HS1</option>
+                                    <option value="R69110440252JS1">PERO: Short-term registration payment - R69110440252JS1</option>
+                                    <option value="169L17131">169L17131</option>
+                                    <option value="AOI[WR]1" class="badge text-bg-warning"><code>To ASL developer: The usercode here will be same list in DemandNote.ChargeItems&BreakDown</code></option>
+                                </select>                                
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -278,7 +288,7 @@
                                 value="18/10/2026">
                         </div>
                         <div class="col-md-12">
-                            <label class="form-label fw-medium">Submission date to AOII(A) / AcSG:</label>
+                            <label class="form-label fw-medium">Submission date to AcSG:</label>
                             <input type="date" class="form-control date-mask" placeholder="dd/MM/yyyy"
                                 value="20/10/2026">
                         </div>
@@ -294,8 +304,20 @@
                         <i class="bi bi-plus-lg me-1"></i>Add Record
                     </button>
                 </div>
-                <div class="card-body p-4" id="partDContainer">
+                <div class="card-body px-4 pt-4 pb-1" id="partDContainer">
                     <!-- Dynamic items rendered via JS -->
+                </div>
+                <div class="card-body px-4">
+                    <dl class="row small">
+                        <dt class="col-sm-12"><u>Note</u></dt>
+                        <dt class="col-sm-1">-</dt>
+                        <dd class="col-sm-11">The user code charged for refund of overpayment of demand notes is 169L17131 regardless of the financial year of collection.</dd>
+                        <dd class="col-sm-12">According to F&AR 420,</dd>
+                        <dt class="col-sm-1">-</dt>
+                        <dd class="col-sm-11">Where the refund is made in respect of collections during the same financial year, the refund will be debited to the subhead to which the revenue was credited (e.g. R69110440252ES1 for PERO: Quarterly payment); and</dd>
+                        <dt class="col-sm-1">-</dt>
+                        <dd class="col-sm-11">Where the refund is made in respect of collections during a previous financial year, the refund will be charged to the respective expenditure subhead.  Thus, the user code charged for refund cases is B69574000S140 (Refund of revenue - revenue collected in previous financial years that needs to be refunded).</dd>                        
+                    </dl>
                 </div>
             </div>
 
@@ -347,7 +369,11 @@
                 </div>
                 <div class="card-body px-4">
                     <ul class="list-group list-group-flush small" id="actionLogUl">
-                        <li class="list-group-item list-group-item-action">[10/11/2026 12:40] Account Team User Create Refund for Demand Note (697014829103)</li>
+                        <li class="list-group-item list-group-item-action">
+                            <div class="container d-flex justify-content-between align-items-center">
+                                [10/11/2026 12:40] Account Team User Create Refund for Demand Note (697014829103)
+                            </div>                                
+                        </li>              
                     </ul>
                 </div>
             </div>            
@@ -355,7 +381,11 @@
             <!-- Sticky Bottom Actions -->
             <div class="sticky-actions">
                 <div class="container d-flex justify-content-between align-items-center">
-                    <div class="text-muted small">
+                    <div>
+                        <button type="button" class="btn btn-outline-secondary px-4"
+                            onclick="alert('Back to Refund List...')">
+                            <i class="bi bi-arrow-return-left me-1"></i>Return
+                        </button>                        
                         <button type="button" class="btn btn-outline-primary px-4"
                             onclick="appendActionLog('Save'); triggerToast('Save', 'Draft saved successfully.')">
                             <i class="bi bi-floppy me-1"></i>Save
@@ -363,15 +393,15 @@
                     </div>
                     <div class="d-flex gap-2">
                         <button type="button" class="btn btn-primary px-4"
-                            onclick="confirm('Confirm Initiate?') ? (() => {appendActionLog('Initiate'); triggerToast('Initiate', 'Refund application marked as Refund (In Progress) / Initiate')})() : false">
+                            onclick="confirm('Confirm to Initiate?') ? (() => {appendActionLog('Initiate'); triggerToast('Initiate', 'Refund application marked as Refund (In Progress) / Initiate')})() : false">
                             <i class="bi bi-play-fill me-1"></i>Initiate
                         </button>
                         <button type="button" class="btn btn-success px-4"
-                            onclick="confirm('Confirm Complete?') ? (() => {appendActionLog('Complete'); triggerToast('Complete', 'Refund application marked as Refunded / Completed.')})() : false">
+                            onclick="confirm('Confirm to Complete?') ? (() => {appendActionLog('Complete'); triggerToast('Complete', 'Refund application marked as Refunded / Completed.')})() : false">
                             <i class="bi bi-check2-circle me-1"></i>Complete
                         </button>
                         <button type="button" class="btn btn-danger px-4"
-                            onclick="confirm('Confirm Void?') ? (() => {appendActionLog('Void'); triggerToast('Cancel', 'Refund application marked as Refund (Cancelled) / Void')})() : false;">
+                            onclick="confirm('Confirm to Void?') ? (() => {appendActionLog('Void'); triggerToast('Cancel', 'Refund application marked as Refund (Cancelled) / Void')})() : false;">
                             <i class="bi bi-x-circle-fill me-1"></i>Void
                         </button>                        
                     </div>
@@ -405,7 +435,7 @@
             wrapper.className = 'repeater-item';
             wrapper.innerHTML = `
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="badge bg-primary">AcSG Advice Record #${partDCount}</span>
+                    <span class="badge bg-primary">Record #${partDCount}</span>
                     <button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('.repeater-item').remove()">
                         <i class="bi bi-trash me-1"></i>Remove
                     </button>
@@ -424,7 +454,7 @@
                         <input type="date" class="form-control" placeholder="dd/MM/yyyy">
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label fw-medium">The claimed amount was debited to user code</label>
+                        <label class="form-label fw-medium">The claimed amount was debited to user code<sup class="text-danger"><strong>(Note)</strong></sup></label>
                         <select class="form-select">
                             <option value="169L17131" selected>169L17131</option>
                             <option value="R69110440252ES1">R69110440252ES1</option>
@@ -433,7 +463,7 @@
                     </div>					
                     <div class="col-md-12">
                         <label class="form-label fw-medium">Payment Voucher No.</label>
-                        <input type="text" maxlength="12" class="form-control" placeholder="(format valiadation: max 12, digit only)">
+                        <input type="text" maxlength="12" class="form-control" placeholder="(format valiadation: max 12 characters only)">
                     </div>
                     <div class="col-12">
                         <label class="form-label fw-medium">Remark</label>
@@ -521,7 +551,7 @@
         {
             let presetwording = '';
             switch (value) {
-                case 'duplicatePayment': presetwording = 'Duplicate payment for Q{X} {XXXX} on {XX/XX/XXXX} settlement date'; break;
+                case 'duplicatePayment': presetwording = 'Duplicate payment for Q{X} {XXXX} on {XX/XX/XXXX}'; break;
                 case 'overpayment': presetwording = 'Overpayment of ${XX} '; break;
                 case 'cancellation': presetwording = 'Cancellation of registration as a Registered Supplier'; break;
                 case 'auditAdjustment': presetwording = 'The supplier declared to refund based on discrepancy for the audit year ended {XX/XX/XXXX}'; break;
@@ -551,7 +581,16 @@
                 case 'Save': actionString += ' Account Team User Update the Refund form'; break;
                 default: actionString += 'Any other required action log are welcome to be added';
             }
-            document.getElementById('actionLogUl').innerHTML += `<li class="list-group-item list-group-item-action">${actionString}</li>`;
+            document.getElementById('actionLogUl').innerHTML += `<li class="list-group-item list-group-item-action">
+                    <div class="container d-flex justify-content-between align-items-center">
+                        <span>${actionString}</span>
+                        <span>
+                            <button type="button" class="btn btn-sm btn-success" onclick="alert('A pop-up dialog to show the update record...')">
+                                <i class="bi bi-window-stack me-1"></i>Open
+                            </button>
+                        </span>
+                    </div>
+                </li>`;
         }
     </script>
 </body>
